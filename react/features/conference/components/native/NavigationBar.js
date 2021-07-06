@@ -9,12 +9,21 @@ import { connect } from '../../../base/redux';
 import { PictureInPictureButton } from '../../../mobile/picture-in-picture';
 import { isToolboxVisible } from '../../../toolbox/functions.native';
 import ConferenceTimer from '../ConferenceTimer';
+import OverflowMenuButton from '../../../toolbox/components/native/OverflowMenuButton';
+import ToggleCameraButton from '../../../toolbox/components/native/ToggleCameraButton';
+import { ColorSchemeRegistry } from '../../../base/color-scheme';
 
 import Labels from './Labels';
 import styles from './styles';
 
 
 type Props = {
+
+    /**
+     * The color-schemed stylesheet of the feature.
+     */
+    _styles: StyleType,
+
 
     /**
      * Whether displaying the current conference timer is enabled or not.
@@ -49,34 +58,43 @@ const NavigationBar = (props: Props) => {
         return null;
     }
 
+    const { _styles } = props;
+    const { buttonStylesBorderless, toggledButtonStyles } = _styles;
+    const backgroundToggledStyle = {
+        ...toggledButtonStyles,
+        style: [
+            toggledButtonStyles.style,
+            _styles.backgroundToggle
+        ]
+    };
+
     return (
         <View
-            pointerEvents = 'box-none'
-            style = { styles.navBarWrapper }>
-            <View style = { styles.pipButtonContainer }>
-                <PictureInPictureButton
-                    styles = { styles.pipButton } />
+            pointerEvents='box-none'
+            style={styles.navBarWrapper}>
+            <View style={styles.contentView}>
+                <View style={[styles.roomTimerView, { backgroundColor: 'rgba(0,0,0,0)' }]}>
+                    <ConferenceTimer textStyle={styles.roomTimer} />
+                </View>
+
+                <View style={[styles.roomNameView, { backgroundColor: 'rgba(0,0,0,0)' }]}>
+                    <Text
+                        numberOfLines={1}
+                        style={styles.roomName}>
+                        {'•  ' + props._meetingName}
+                    </Text>
+                </View>
             </View>
-            <View
-                pointerEvents = 'box-none'
-                style = { styles.roomNameWrapper }>
-                {
-                    props._meetingNameEnabled
-                        && <View style = { styles.roomNameView }>
-                            <Text
-                                numberOfLines = { 1 }
-                                style = { styles.roomName }>
-                                { props._meetingName }
-                            </Text>
-                        </View>
-                }
-                {
-                    props._conferenceTimerEnabled
-                            && <View style = { styles.roomTimerView }>
-                                <ConferenceTimer textStyle = { styles.roomTimer } />
-                            </View>
-                }
-                <Labels />
+
+            <View style={styles.containerSwitchCamera}>
+                <ToggleCameraButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
+                <OverflowMenuButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
             </View>
         </View>
     );
@@ -92,6 +110,7 @@ function _mapStateToProps(state) {
     const { hideConferenceTimer, hideConferenceSubject } = state['features/base/config'];
 
     return {
+        _styles: ColorSchemeRegistry.get(state, 'Toolbox'),
         _conferenceTimerEnabled:
             getFeatureFlag(state, CONFERENCE_TIMER_ENABLED, true) && !hideConferenceTimer,
         _meetingName: getConferenceName(state),

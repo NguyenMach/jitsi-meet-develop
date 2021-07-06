@@ -83,6 +83,9 @@ export const CONFERENCE_UNIQUE_ID_SET = 'CONFERENCE_UNIQUE_ID_SET';
  */
 export const CONFERENCE_WILL_JOIN = 'CONFERENCE_WILL_JOIN';
 
+export const CLICK_JOIN_ROOM_EVENT = 'CLICK_JOIN_ROOM_EVENT';
+
+
 /**
  * The type of (redux) action which signals that a specific conference will be
  * left.

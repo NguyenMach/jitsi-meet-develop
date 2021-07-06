@@ -58,7 +58,6 @@ function Toolbox(props: Props) {
 
     const { _styles, _width } = props;
     const { buttonStylesBorderless, hangupButtonStyles, toggledButtonStyles } = _styles;
-    const additionalButtons = getMovableButtons(_width);
     const backgroundToggledStyle = {
         ...toggledButtonStyles,
         style: [
@@ -69,38 +68,33 @@ function Toolbox(props: Props) {
 
     return (
         <View
-            pointerEvents = 'box-none'
-            style = { styles.toolboxContainer }>
+            pointerEvents='box-none'
+            style={styles.toolboxContainer}>
             <SafeAreaView
-                accessibilityRole = 'toolbar'
-                pointerEvents = 'box-none'
-                style = { styles.toolbox }>
-                <AudioMuteButton
-                    styles = { buttonStylesBorderless }
-                    toggledStyles = { toggledButtonStyles } />
-                <VideoMuteButton
-                    styles = { buttonStylesBorderless }
-                    toggledStyles = { toggledButtonStyles } />
-                { additionalButtons.has('chat')
-                      && <ChatButton
-                          styles = { buttonStylesBorderless }
-                          toggledStyles = { backgroundToggledStyle } />}
+                accessibilityRole='toolbar'
+                pointerEvents='box-none'
+                style={styles.toolbox}>
 
-                { additionalButtons.has('raisehand')
-                      && <RaiseHandButton
-                          styles = { buttonStylesBorderless }
-                          toggledStyles = { backgroundToggledStyle } />}
-                {additionalButtons.has('tileview') && <TileViewButton styles = { buttonStylesBorderless } />}
-                {additionalButtons.has('invite') && <InviteButton styles = { buttonStylesBorderless } />}
-                {additionalButtons.has('togglecamera')
-                      && <ToggleCameraButton
-                          styles = { buttonStylesBorderless }
-                          toggledStyles = { backgroundToggledStyle } />}
-                <OverflowMenuButton
-                    styles = { buttonStylesBorderless }
-                    toggledStyles = { toggledButtonStyles } />
+                <AudioMuteButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
+                <VideoMuteButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
                 <HangupButton
-                    styles = { hangupButtonStyles } />
+                    styles={hangupButtonStyles} />
+
+                <RaiseHandButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
+                <ChatButton
+                    styles={buttonStylesBorderless}
+                    toggledStyles={backgroundToggledStyle} />
+
+
             </SafeAreaView>
         </View>
     );

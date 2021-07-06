@@ -3,7 +3,7 @@
 import { ColorSchemeRegistry, schemeColor } from '../../../base/color-scheme';
 import { BoxModel, ColorPalette } from '../../../base/styles';
 
-const BUTTON_SIZE = 48;
+const BUTTON_SIZE = 52;
 
 // Toolbox, toolbar:
 
@@ -11,7 +11,7 @@ const BUTTON_SIZE = 48;
  * The style of toolbar buttons.
  */
 const toolbarButton = {
-    borderRadius: 3,
+    borderRadius: 26,
     borderWidth: 0,
     flex: 0,
     flexDirection: 'row',
@@ -40,6 +40,11 @@ const whiteToolbarButtonIcon = {
     color: ColorPalette.white
 };
 
+const blackToolbarButtonIcon = {
+    ...toolbarButtonIcon,
+    color: ColorPalette.black
+};
+
 /**
  * The Toolbox and toolbar related styles.
  */
@@ -62,14 +67,14 @@ const styles = {
      */
     toolbox: {
         alignItems: 'center',
-        backgroundColor: ColorPalette.darkBackground,
         borderTopLeftRadius: 3,
         borderTopRightRadius: 3,
         flexDirection: 'row',
         flexGrow: 0,
         justifyContent: 'space-between',
         paddingHorizontal: BoxModel.margin,
-        paddingVertical: 8
+        paddingVertical: 8,
+        marginHorizontal:20
     },
 
     /**
@@ -103,18 +108,21 @@ ColorSchemeRegistry.register('Toolbox', {
         iconStyle: whiteToolbarButtonIcon,
         style: {
             ...toolbarButton,
-            backgroundColor: 'transparent'
+            backgroundColor: 'rgba(0,0,0,0.65)'
         }
     },
 
     backgroundToggle: {
-        backgroundColor: ColorPalette.toggled
+        backgroundColor: ColorPalette.white
     },
 
     hangupButtonStyles: {
         iconStyle: whiteToolbarButtonIcon,
         style: {
             ...toolbarButton,
+            width:52,
+            height:52,
+            borderRadius:26,
             backgroundColor: schemeColor('hangup')
         },
         underlayColor: ColorPalette.buttonUnderlay
@@ -124,9 +132,10 @@ ColorSchemeRegistry.register('Toolbox', {
      * Styles for toggled buttons in the toolbar.
      */
     toggledButtonStyles: {
-        iconStyle: whiteToolbarButtonIcon,
+        iconStyle: blackToolbarButtonIcon,
         style: {
-            ...toolbarButton
+            ...toolbarButton,
+            backgroundColor: ColorPalette.white
         }
     }
 });

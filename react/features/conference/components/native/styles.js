@@ -79,16 +79,15 @@ export default {
         alignItems: 'center',
         flex: 1,
         flexDirection: 'row',
-        height: 44,
-        justifyContent: 'center',
-        paddingHorizontal: 14
+        height: 60,
+        paddingHorizontal: 14,
+        marginTop:16
     },
 
     roomTimer: {
         color: ColorPalette.white,
-        fontSize: 12,
-        fontWeight: '400',
-        paddingHorizontal: 8
+        fontSize: 13,
+        fontWeight: '600',
     },
 
     roomTimerView: {
@@ -97,13 +96,13 @@ export default {
         borderTopRightRadius: 3,
         height: 28,
         justifyContent: 'center',
-        minWidth: 50
+        minWidth: 40
     },
 
     roomName: {
         color: ColorPalette.white,
         fontSize: 14,
-        fontWeight: '400'
+        fontWeight: '600'
     },
 
     roomNameView: {
@@ -113,7 +112,17 @@ export default {
         flexShrink: 1,
         height: 28,
         justifyContent: 'center',
-        paddingHorizontal: 10
+    },
+
+    buttonTileView: {
+        backgroundColor: 'rgba(0,0,0,0.65)',
+        borderRadius: 26,
+        height: 52,
+        width: 52,
+        justifyContent: 'center',
+        alignItems:'center',
+        marginLeft:8,
+        padding:10
     },
 
     roomNameWrapper: {
@@ -137,6 +146,19 @@ export default {
 
     insecureRoomNameLabel: {
         backgroundColor: INSECURE_ROOM_NAME_LABEL_COLOR
+    },
+    containerSwitchCamera:{
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-end',
+    },
+    contentView:{
+        backgroundColor: '#rgba(0,0,0,0.65)',
+        flexDirection: 'row',
+        height: 52,
+        alignItems: 'center',
+        borderRadius: 171,
+        paddingHorizontal: 20
     }
 };
 

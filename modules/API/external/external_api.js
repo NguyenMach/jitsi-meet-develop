@@ -486,6 +486,18 @@ export default class JitsiMeetExternalAPI extends EventEmitter {
                 };
             }
 
+            // case 'custom-conference-event':{
+            //     if (typeof this._tmpE2EEKey !== 'undefined') {
+            //         this.executeCommand(commands.e2eeKey, this._tmpE2EEKey);
+            //         this._tmpE2EEKey = undefined;
+            //     }
+
+            //     this._myUserID = userID;
+            //     this._participants[userID] = {
+            //         avatarURL: data.avatarURL
+            //     };
+            // }
+
             // eslint-disable-next-line no-fallthrough
             case 'participant-joined': {
                 this._participants[userID] = this._participants[userID] || {};

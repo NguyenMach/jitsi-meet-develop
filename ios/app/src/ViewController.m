@@ -96,6 +96,15 @@
     [self _onJitsiMeetViewDelegateEvent:@"CONFERENCE_WILL_JOIN" withData:data];
 }
 
+- (void)customEvent:(NSDictionary *)data{
+  [self _onJitsiMeetViewDelegateEvent:@"CUSTOM_EVENT" withData:data];
+}
+
+- (void)clickJoinRoomEvent:(NSDictionary *)data{
+  [self _onJitsiMeetViewDelegateEvent:@"clickJoinRoomEvent" withData:data];
+}
+
+
 #if 0
 - (void)enterPictureInPicture:(NSDictionary *)data {
     [self _onJitsiMeetViewDelegateEvent:@"ENTER_PICTURE_IN_PICTURE" withData:data];

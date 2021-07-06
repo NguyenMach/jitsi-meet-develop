@@ -9,6 +9,7 @@ import { appNavigate } from '../../app/actions';
 import isInsecureRoomName from '../../base/util/isInsecureRoomName';
 import { isCalendarEnabled } from '../../calendar-sync';
 import { isRecentListEnabled } from '../../recent-list/functions';
+import {conferenceClickJoin} from '../../base/conference/actions'
 
 /**
  * {@code AbstractWelcomePage}'s React {@code Component} prop types.

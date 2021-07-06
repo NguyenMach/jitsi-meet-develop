@@ -37,6 +37,7 @@ import {
     conferenceTimestampChanged,
     conferenceUniqueIdSet,
     conferenceWillJoin,
+    conferenceClickJoin,
     conferenceWillLeave,
     dataChannelOpened,
     kickedOut,

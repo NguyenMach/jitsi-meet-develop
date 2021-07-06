@@ -50,7 +50,8 @@ import {
     SET_PASSWORD_FAILED,
     SET_ROOM,
     SET_PENDING_SUBJECT_CHANGE,
-    SET_START_MUTED_POLICY
+    SET_START_MUTED_POLICY,
+    CLICK_JOIN_ROOM_EVENT
 } from './actionTypes';
 import {
     AVATAR_URL_COMMAND,
@@ -390,6 +391,13 @@ function _conferenceWillJoin(conference: Object) {
 export function conferenceWillJoin(conference: Object) {
     return {
         type: CONFERENCE_WILL_JOIN,
+        conference
+    };
+}
+
+export function conferenceClickJoin(conference: Object) {
+    return {
+        type: CLICK_JOIN_ROOM_EVENT,
         conference
     };
 }

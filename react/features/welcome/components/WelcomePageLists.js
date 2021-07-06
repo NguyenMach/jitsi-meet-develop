@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 
+import {View} from 'react-native'
+
 import { translate } from '../../base/i18n';
 import { IconEventNote, IconRestore } from '../../base/icons';
 import { PagedList } from '../../base/react';
@@ -44,6 +46,7 @@ type Props = {
 /**
  * Implements the lists displayed on the mobile welcome screen.
  */
+
 class WelcomePageLists extends Component<Props> {
     /**
      * Initializes a new {@code WelcomePageLists} instance.
@@ -53,6 +56,7 @@ class WelcomePageLists extends Component<Props> {
     constructor(props) {
         super(props);
 
+        console.log("WelcomePageLists");
         // Bind event handlers so they are only bound once per instance.
         this._onSelectPage = this._onSelectPage.bind(this);
     }

@@ -158,6 +158,7 @@
     "validate": "npm ls",
     "start": "make dev",
     "ios": "react-native run-ios",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "build:ios": "react-native bundle --entry-file='index.ios.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   }
 }

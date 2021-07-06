@@ -111,7 +111,7 @@ export { default as IconShareDesktop } from './share-desktop.svg';
 export { default as IconShareDoc } from './share-doc.svg';
 export { default as IconShareVideo } from './shared-video.svg';
 export { default as IconSmile } from './smile.svg';
-export { default as IconSwitchCamera } from './switch-camera.svg';
+export { default as IconSwitchCamera } from './ic_switch_camera.svg';
 export { default as IconTileView } from './tiles-many.svg';
 export { default as IconToggleRecording } from './camera-take-picture.svg';
 export { default as IconTrash } from './trash.svg';
@@ -130,3 +130,6 @@ export { default as IconWifi1Bar } from './wifi-1.svg';
 export { default as IconWifi2Bars } from './wifi-2.svg';
 export { default as IconWifi3Bars } from './wifi-3.svg';
 export { default as IconYahoo } from './yahoo.svg';
+export { default as IconCloseHangup } from './ic_Close.svg';
+export { default as IconOptionMore } from './ic_option_more.svg';
+

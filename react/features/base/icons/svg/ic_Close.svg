@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="52px" viewBox="0 0 52 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Buttons/Oval 52/Red/Close</title>
+    <defs>
+        <path d="M26,0 C40.3594035,-2.63777963e-15 52,11.6405965 52,26 C52,40.3594035 40.3594035,52 26,52 C11.6405965,52 1.75851975e-15,40.3594035 0,26 C-1.75851975e-15,11.6405965 11.6405965,2.63777963e-15 26,0 Z" id="path-1"></path>
+        <filter color-interpolation-filters="auto" id="filter-3">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Buttons/Oval-52/Red/Close" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Rectangle" fill="#FF453A" xlink:href="#path-1"></use>
+        <g id="Group" mask="url(#mask-2)" stroke-linecap="round" stroke-linejoin="round">
+            <g transform="translate(13.000000, 13.000000)" id="Icons/Glyph/Video-Plus-Copy" filter="url(#filter-3)">
+                <g id="close" transform="translate(5.416667, 5.416667)" stroke="#070707" stroke-width="1.625">
+                    <line x1="0" y1="0" x2="15.1666667" y2="15.1666667" id="Path"></line>
+                    <line x1="0" y1="15.1666667" x2="15.1666667" y2="0" id="Path"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

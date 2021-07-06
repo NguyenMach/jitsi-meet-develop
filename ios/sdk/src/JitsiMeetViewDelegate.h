@@ -111,4 +111,10 @@
  */
 - (void)videoMutedChanged:(NSDictionary *)data;
 
+- (void)customEvent:(NSDictionary *)data;
+
+
+- (void)clickJoinRoomEvent:(NSDictionary *)data;
+
+
 @end

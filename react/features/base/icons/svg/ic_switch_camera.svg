@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_switch_camera</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_switch_camera" transform="translate(1.000000, 1.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <polygon id="Path" points="4 2.5 6.5 2.5 7.5 0.5 12.5 0.5 13.5 2.5 16 2.5 16 10.5 4 10.5"></polygon>
+            <circle id="Oval" cx="10" cy="6" r="2"></circle>
+            <path d="M10,16 C4.47715,16 0,13.7614 0,11 C0,10.2889 0.296895,9.61245 0.832085,9 M10,16 L8,14 M10,16 L8,18" id="Shape"></path>
+            <path d="M14,15.58395 C17.5318,14.8124 20,13.0503 20,11 C20,10.2889 19.7031,9.61245 19.1679,9" id="Path"></path>
+        </g>
+    </g>
+</svg>

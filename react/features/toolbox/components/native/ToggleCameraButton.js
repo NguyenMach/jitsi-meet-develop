@@ -7,6 +7,10 @@ import { connect } from '../../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../../base/toolbox/components';
 import { isLocalTrackMuted } from '../../../base/tracks';
 
+import {
+    conferenceClickJoin
+} from '../../../base/conference';
+
 /**
  * The type of the React {@code Component} props of {@link ToggleCameraButton}.
  */
@@ -44,6 +48,9 @@ class ToggleCameraButton extends AbstractButton<Props, *> {
      * @returns {void}
      */
     _handleClick() {
+        console.log("ToggleCameraButton");
+        this.props.dispatch(conferenceClickJoin("hello"));
+
         this.props.dispatch(toggleCameraFacingMode());
     }
 

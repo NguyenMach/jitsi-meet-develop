@@ -11,6 +11,7 @@ import {
     CONFERENCE_JOINED,
     CONFERENCE_LEFT,
     CONFERENCE_WILL_JOIN,
+    CLICK_JOIN_ROOM_EVENT,
     JITSI_CONFERENCE_URL_KEY,
     SET_ROOM,
     forEachConference,
@@ -57,6 +58,9 @@ const CHAT_TOGGLED = 'CHAT_TOGGLED';
  * has ended either by user request or because an error was produced.
  */
 const CONFERENCE_TERMINATED = 'CONFERENCE_TERMINATED';
+
+const CUSTOM_EVENT = 'CUSTOM_EVENT';
+
 
 /**
  * Event which will be emitted on the native side to indicate a message was received
@@ -120,7 +124,27 @@ MiddlewareRegistry.register(store => next => action => {
     case CONFERENCE_LEFT:
     case CONFERENCE_WILL_JOIN:
         _sendConferenceEvent(store, action);
+
+        sendEvent(
+            store,
+            CUSTOM_EVENT,
+            /* data */ {
+                data: 'hello nguyen mach'
+            });
+
         break;
+
+    case CLICK_JOIN_ROOM_EVENT:
+
+    console.log("---CLICK_JONT_ROOM_EVENT");
+        sendEvent(
+            store,
+            CLICK_JOIN_ROOM_EVENT,
+            /* data */ {
+                data: 'Click jont room event: Hello.......'
+            });
+
+        break
 
     case CONFERENCE_JOINED:
         _sendConferenceEvent(store, action);
