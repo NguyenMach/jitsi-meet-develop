@@ -171,7 +171,8 @@ function Thumbnail(props: Props) {
             { !participant.isFakeParticipant && <View
                 style = { [
                     styles.thumbnailTopIndicatorContainer,
-                    styles.thumbnailTopRightIndicatorContainer
+                    styles.thumbnailTopRightIndicatorContainer,
+                    {paddingRight:0}
                 ] }>
                 <RaisedHandIndicator participantId = { participant.id } />
                 { renderDominantSpeakerIndicator && <DominantSpeakerIndicator /> }
@@ -180,7 +181,8 @@ function Thumbnail(props: Props) {
             { !participant.isFakeParticipant && <View
                 style = { [
                     styles.thumbnailTopIndicatorContainer,
-                    styles.thumbnailTopRightIndicatorContainer
+                    styles.thumbnailTopRightIndicatorContainer,
+                    {paddingRight:0}
                 ] }>
                 <ConnectionIndicator participantId = { participant.id } />
             </View> }
