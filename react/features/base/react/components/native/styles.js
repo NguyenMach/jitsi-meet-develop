@@ -210,7 +210,13 @@ export const TINTED_VIEW_DEFAULT = {
 
 export const BASE_INDICATOR = {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor:'rgba(0,0,0,0.65)',
+    width:20,
+    height:20,
+    borderRadius:10,
+    padding:6,
+    marginRight:5
 };
 
 /**

@@ -18,10 +18,10 @@ export default {
      * The display name container.
      */
     displayNameContainer: {
-        alignSelf: 'center',
+        alignSelf: 'flex-start',
         bottom: 0,
         flex: 1,
-        margin: 4,
+        margin: 10,
         position: 'absolute'
     },
 
@@ -84,7 +84,7 @@ export default {
         alignItems: 'stretch',
         backgroundColor: ColorPalette.appBackground,
         borderColor: '#424242',
-        borderRadius: 3,
+        borderRadius: 8,
         borderStyle: 'solid',
         borderWidth: 1,
         flex: 1,
@@ -102,8 +102,8 @@ export default {
      * The thumbnails indicator container.
      */
     thumbnailIndicatorContainer: {
-        alignSelf: 'stretch',
-        bottom: 4,
+        alignSelf: 'flex-start',
+        top: 4,
         flex: 1,
         flexDirection: 'row',
         left: 4,

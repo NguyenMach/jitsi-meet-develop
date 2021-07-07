@@ -266,7 +266,7 @@
 		};
 		0BBA83C41EC9F7600075A103 /* Run React packager */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -274,7 +274,7 @@
 			name = "Run React packager";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "../scripts/run-packager.sh\n";
 		};

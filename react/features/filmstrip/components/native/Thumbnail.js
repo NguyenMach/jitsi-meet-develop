@@ -171,7 +171,7 @@ function Thumbnail(props: Props) {
             { !participant.isFakeParticipant && <View
                 style = { [
                     styles.thumbnailTopIndicatorContainer,
-                    styles.thumbnailTopLeftIndicatorContainer
+                    styles.thumbnailTopRightIndicatorContainer
                 ] }>
                 <RaisedHandIndicator participantId = { participant.id } />
                 { renderDominantSpeakerIndicator && <DominantSpeakerIndicator /> }
