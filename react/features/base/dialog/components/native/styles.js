@@ -163,7 +163,9 @@ ColorSchemeRegistry.register('BottomSheet', {
          * Style for the {@code Icon} element in a generic item of the menu.
          */
         iconStyle: {
-            ...brandedDialogIconStyle
+            ...brandedDialogIconStyle,
+            color:'white',
+            marginLeft: 16,
         },
 
         /**
@@ -171,14 +173,19 @@ ColorSchemeRegistry.register('BottomSheet', {
          */
         labelStyle: {
             ...brandedDialogLabelStyle,
-            marginLeft: 32
+            marginLeft: 10,
+            color:'white'
         },
 
         /**
          * Container style for a generic item rendered in the menu.
          */
         style: {
-            ...brandedDialogItemContainerStyle
+            ...brandedDialogItemContainerStyle,
+            backgroundColor:'rgb(34,35,35)',
+            borderRadius:12,
+            height:56,
+            marginTop:12
         },
 
         /**
@@ -191,7 +198,7 @@ ColorSchemeRegistry.register('BottomSheet', {
      * Bottom sheet's base style.
      */
     sheet: {
-        backgroundColor: schemeColor('background')
+        backgroundColor: '#0F1114'
     }
 });
 

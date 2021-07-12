@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 
 import { ColorSchemeRegistry } from '../../../base/color-scheme';
@@ -132,31 +132,70 @@ class OverflowMenu extends PureComponent<Props, State> {
 
         return (
             <BottomSheet
-                onCancel = { this._onCancel }
-                onSwipe = { this._onSwipe }
-                renderHeader = { this._renderMenuExpandToggle }>
-                <AudioRouteButton { ...buttonProps } />
-                {!toolbarButtons.has('invite') && <InviteButton { ...buttonProps } />}
-                <AudioOnlyButton { ...buttonProps } />
-                {!toolbarButtons.has('raisehand') && <RaiseHandButton { ...buttonProps } />}
-                <SecurityDialogButton { ...buttonProps } />
-                <ScreenSharingButton { ...buttonProps } />
-                <MoreOptionsButton { ...moreOptionsButtonProps } />
-                <Collapsible collapsed = { !showMore }>
-                    {!toolbarButtons.has('togglecamera') && <ToggleCameraButton { ...buttonProps } />}
-                    {!toolbarButtons.has('tileview') && <TileViewButton { ...buttonProps } />}
-                    <RecordButton { ...buttonProps } />
-                    <LiveStreamButton { ...buttonProps } />
-                    <SharedVideoButton { ...buttonProps } />
-                    <ClosedCaptionButton { ...buttonProps } />
-                    <SharedDocumentButton { ...buttonProps } />
-                    <MuteEveryoneButton { ...buttonProps } />
-                    <MuteEveryonesVideoButton { ...buttonProps } />
-                    <HelpButton { ...buttonProps } />
+                onCancel={this._onCancel}
+                onSwipe={this._onSwipe}
+                renderHeader={this._renderHeaderBottomSheet}>
+                <AudioRouteButton {...buttonProps} />
+                {!toolbarButtons.has('invite') && <InviteButton {...buttonProps} />}
+                <AudioOnlyButton {...buttonProps} />
+                {!toolbarButtons.has('raisehand') && <RaiseHandButton {...buttonProps} />}
+                <SecurityDialogButton {...buttonProps} />
+                <ScreenSharingButton {...buttonProps} />
+                <MoreOptionsButton {...moreOptionsButtonProps} />
+                <Collapsible collapsed={!showMore}>
+                    {!toolbarButtons.has('togglecamera') && <ToggleCameraButton {...buttonProps} />}
+                    {!toolbarButtons.has('tileview') && <TileViewButton {...buttonProps} />}
+                    <RecordButton {...buttonProps} />
+                    <LiveStreamButton {...buttonProps} />
+                    <SharedVideoButton {...buttonProps} />
+                    <ClosedCaptionButton {...buttonProps} />
+                    <SharedDocumentButton {...buttonProps} />
+                    <MuteEveryoneButton {...buttonProps} />
+                    <MuteEveryonesVideoButton {...buttonProps} />
+                    <HelpButton {...buttonProps} />
                 </Collapsible>
             </BottomSheet>
         );
     }
+
+
+    _renderHeaderBottomSheet: () => React$Element<any>;
+
+    /**
+     * Function to render the header view in the bottom sheet header area.
+     *
+     * @returns {React$Element}
+     */
+    _renderHeaderBottomSheet() {
+        return (
+            <View
+                style={{
+                    borderTopLeftRadius: 16,
+                    borderTopRightRadius: 16,
+                    height: 60,
+                    backgroundColor: '#0F1114',
+                    flexDirection: 'row',
+                }}>
+                <View style={{ width: 40, backgroundColor: 'red' }}> </View>
+                <View style={{ alignItems: 'center',
+                                justifyContent: 'center',
+                                flex:1}}>
+
+                    <Text style={{ alignSelf: 'center', color: 'white', fontSize: 15 }}>{'toolbar.option'}</Text>
+                </View>
+
+                <View style={{alignSelf:'flex-end', width: 40}}>
+                    <TouchableOpacity
+                        style={{ alignSelf: 'center', height: 30, width: 30, backgroundColor: 'yellow', marginRight: 24 }}
+                        onPress={this._onCancel}>
+                    </TouchableOpacity>
+
+                </View>
+
+            </View>
+        );
+    }
+
 
     _renderMenuExpandToggle: () => React$Element<any>;
 
@@ -168,14 +207,14 @@ class OverflowMenu extends PureComponent<Props, State> {
     _renderMenuExpandToggle() {
         return (
             <View
-                style = { [
+                style={[
                     this.props._bottomSheetStyles.sheet,
                     styles.expandMenuContainer
-                ] }>
-                <TouchableOpacity onPress = { this._onToggleMenu }>
-                    { /* $FlowFixMe */ }
+                ]}>
+                <TouchableOpacity onPress={this._onToggleMenu}>
+                    { /* $FlowFixMe */}
                     <IconDragHandle
-                        fill = { this.props._bottomSheetStyles.buttons.iconStyle.color } />
+                        fill={this.props._bottomSheetStyles.buttons.iconStyle.color} />
                 </TouchableOpacity>
             </View>
         );
@@ -190,6 +229,7 @@ class OverflowMenu extends PureComponent<Props, State> {
      * @returns {boolean}
      */
     _onCancel() {
+        console.log("_onCancel");
         if (this.props._isOpen) {
             this.props.dispatch(hideDialog(OverflowMenu_));
 
@@ -212,18 +252,18 @@ class OverflowMenu extends PureComponent<Props, State> {
         const { showMore } = this.state;
 
         switch (direction) {
-        case 'up':
-            !showMore && this.setState({
-                showMore: true
-            });
+            case 'up':
+                !showMore && this.setState({
+                    showMore: true
+                });
 
-            return !showMore;
-        case 'down':
-            showMore && this.setState({
-                showMore: false
-            });
+                return !showMore;
+            case 'down':
+                showMore && this.setState({
+                    showMore: false
+                });
 
-            return showMore;
+                return showMore;
         }
     }
 

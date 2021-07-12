@@ -838,6 +838,7 @@
         "hangup": "Leave the meeting",
         "help": "Help",
         "invite": "Invite people",
+        "option":"Option",
         "lobbyButtonDisable": "Disable lobby mode",
         "lobbyButtonEnable": "Enable lobby mode",
         "login": "Login",
