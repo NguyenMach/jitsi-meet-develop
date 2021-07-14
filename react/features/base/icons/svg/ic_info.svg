@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_info</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_info" transform="translate(2.000000, 2.000000)">
+            <path d="M20,40 C25.5228,40 30.5228,37.7614 34.1421,34.1421 C37.7614,30.5228 40,25.5228 40,20 C40,14.4772 37.7614,9.4772 34.1421,5.85786 C30.5228,2.23858 25.5228,0 20,0 C14.4772,0 9.4772,2.23858 5.85786,5.85786 C2.23858,9.4772 0,14.4772 0,20 C0,25.5228 2.23858,30.5228 5.85786,34.1421 C9.4772,37.7614 14.4772,40 20,40 Z" id="Path" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"></path>
+            <path d="M20,7 C21.3807,7 22.5,8.1193 22.5,9.5 C22.5,10.8807 21.3807,12 20,12 C18.6193,12 17.5,10.8807 17.5,9.5 C17.5,8.1193 18.6193,7 20,7 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <polyline id="Path" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="20.5 30 20.5 16 19.5 16 18.5 16"></polyline>
+            <line x1="17" y1="30" x2="24" y2="30" id="Path" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+        </g>
+    </g>
+</svg>
