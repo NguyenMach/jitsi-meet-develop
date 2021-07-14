@@ -87,6 +87,14 @@ const styles = {
         maxWidth: 580,
         marginLeft: 'auto',
         marginRight: 'auto'
+    },
+
+    containerHeaderBottomSheet:{
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        height: 60,
+        backgroundColor: '#0F1114',
+        flexDirection: 'row',
     }
 };
 

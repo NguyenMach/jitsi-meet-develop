@@ -104,6 +104,14 @@
   [self _onJitsiMeetViewDelegateEvent:@"clickJoinRoomEvent" withData:data];
 }
 
+- (void)showConferenceMembers:(NSDictionary *)data{
+  [self _onJitsiMeetViewDelegateEvent:@"showConferenceMembers" withData:data];
+}
+
+- (void)showConferenceInformation:(NSDictionary *)data{
+  [self _onJitsiMeetViewDelegateEvent:@"showConferenceInformation" withData:data];
+}
+
 
 #if 0
 - (void)enterPictureInPicture:(NSDictionary *)data {

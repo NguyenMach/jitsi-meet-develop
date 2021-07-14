@@ -191,8 +191,8 @@ ColorSchemeRegistry.register('BottomSheet', {
         /**
          * Additional style that is not directly used as a style object.
          */
-        underlayColor: ColorPalette.overflowMenuItemUnderlay
-    },
+         underlayColor: ColorPalette.transparent
+        },
 
     /**
      * Bottom sheet's base style.

@@ -15,8 +15,11 @@ import {
     JITSI_CONFERENCE_URL_KEY,
     SET_ROOM,
     forEachConference,
+    getRoomName,
     getCurrentConference,
-    isRoomValid
+    isRoomValid,
+    SHOW_CONFERENCE_INFORMATION,
+    SHOW_CONFERENCE_MEMBERS,
 } from '../../base/conference';
 import { LOAD_CONFIG_ERROR } from '../../base/config';
 import {
@@ -180,6 +183,36 @@ MiddlewareRegistry.register(store => next => action => {
     case ENTER_PICTURE_IN_PICTURE:
         sendEvent(store, type, /* data */ {});
         break;
+
+        case SHOW_CONFERENCE_INFORMATION: {
+            const roomName = getRoomName(store.getState());
+            const conference = getCurrentConference(store.getState());
+            let url = _normalizeUrl(conference[JITSI_CONFERENCE_URL_KEY]);
+    
+            sendEvent(
+                store,
+                SHOW_CONFERENCE_INFORMATION,
+                /* data */ {
+                    conference: roomName,
+                    url: url
+                });
+    
+             break
+        }
+        case SHOW_CONFERENCE_MEMBERS: {
+            const roomName = getRoomName(store.getState());
+            const conference = getCurrentConference(store.getState());
+            let url = _normalizeUrl(conference[JITSI_CONFERENCE_URL_KEY]);
+    
+            sendEvent(
+                store,
+                SHOW_CONFERENCE_MEMBERS,
+                /* data */ {
+                    conference:roomName,
+                    url: url
+                });
+            break
+        }
 
     case LOAD_CONFIG_ERROR: {
         const { error, locationURL } = action;

@@ -132,4 +132,7 @@ export { default as IconWifi3Bars } from './wifi-3.svg';
 export { default as IconYahoo } from './yahoo.svg';
 export { default as IconCloseHangup } from './ic_Close.svg';
 export { default as IconOptionMore } from './ic_option_more.svg';
+export { default as IconInformation } from './ic_info.svg';
+export { default as IconMember } from './ic_member.svg';
+
 

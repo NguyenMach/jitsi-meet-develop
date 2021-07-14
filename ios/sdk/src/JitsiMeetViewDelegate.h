@@ -117,4 +117,21 @@
 - (void)clickJoinRoomEvent:(NSDictionary *)data;
 
 
+/**
+ * Called when tap to Conference informmation button .
+ *
+ * The `data` dictionary.
+ */
+- (void)showConferenceInformation:(NSDictionary *)data;
+
+
+/**
+ * Called when tap to Conference members button .
+ *
+ * The `data` dictionary.
+ */
+- (void)showConferenceMembers:(NSDictionary *)data;
+
+
+
 @end

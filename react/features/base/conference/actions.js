@@ -51,7 +51,9 @@ import {
     SET_ROOM,
     SET_PENDING_SUBJECT_CHANGE,
     SET_START_MUTED_POLICY,
-    CLICK_JOIN_ROOM_EVENT
+    CLICK_JOIN_ROOM_EVENT,
+    SHOW_CONFERENCE_INFORMATION,
+    SHOW_CONFERENCE_MEMBERS
 } from './actionTypes';
 import {
     AVATAR_URL_COMMAND,
@@ -401,6 +403,22 @@ export function conferenceClickJoin(conference: Object) {
         conference
     };
 }
+
+
+export function showConferenceInformation(conference: Object) {
+    return {
+        type: SHOW_CONFERENCE_INFORMATION,
+        conference
+    };
+}
+
+export function showConferenceMembers(conference: Object) {
+    return {
+        type: SHOW_CONFERENCE_MEMBERS,
+        conference
+    };
+}
+
 
 /**
  * Signals the intention of the application to have the local participant leave

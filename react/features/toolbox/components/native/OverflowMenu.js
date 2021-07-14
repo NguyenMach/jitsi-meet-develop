@@ -1,8 +1,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Image } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import { translate } from '../../../base/i18n';
 
 import { ColorSchemeRegistry } from '../../../base/color-scheme';
 import { BottomSheet, hideDialog, isDialogOpen } from '../../../base/dialog';
@@ -28,6 +29,11 @@ import RaiseHandButton from './RaiseHandButton';
 import ScreenSharingButton from './ScreenSharingButton.js';
 import ToggleCameraButton from './ToggleCameraButton';
 import styles from './styles';
+import ConferenceInforButton from './ConferenceInforButton';
+import ConferenceMemberButton from './ConferenceMemberButton';
+
+const cancelIcon = require('../../../../../images/ic_Close.png');
+
 
 /**
  * The type of the React {@code Component} props of {@link OverflowMenu}.
@@ -105,6 +111,7 @@ class OverflowMenu extends PureComponent<Props, State> {
         this._onSwipe = this._onSwipe.bind(this);
         this._onToggleMenu = this._onToggleMenu.bind(this);
         this._renderMenuExpandToggle = this._renderMenuExpandToggle.bind(this);
+        this._renderHeaderBottomSheet = this._renderHeaderBottomSheet.bind(this);
     }
 
     /**
@@ -135,59 +142,40 @@ class OverflowMenu extends PureComponent<Props, State> {
                 onCancel={this._onCancel}
                 onSwipe={this._onSwipe}
                 renderHeader={this._renderHeaderBottomSheet}>
+                <ConferenceInforButton {...buttonProps} />
+                <ConferenceMemberButton {...buttonProps}/>
+                <TileViewButton {...buttonProps} />
+                <MuteEveryoneButton {...buttonProps} />
                 <AudioRouteButton {...buttonProps} />
-                {!toolbarButtons.has('invite') && <InviteButton {...buttonProps} />}
-                <AudioOnlyButton {...buttonProps} />
-                {!toolbarButtons.has('raisehand') && <RaiseHandButton {...buttonProps} />}
-                <SecurityDialogButton {...buttonProps} />
-                <ScreenSharingButton {...buttonProps} />
-                <MoreOptionsButton {...moreOptionsButtonProps} />
-                <Collapsible collapsed={!showMore}>
-                    {!toolbarButtons.has('togglecamera') && <ToggleCameraButton {...buttonProps} />}
-                    {!toolbarButtons.has('tileview') && <TileViewButton {...buttonProps} />}
-                    <RecordButton {...buttonProps} />
-                    <LiveStreamButton {...buttonProps} />
-                    <SharedVideoButton {...buttonProps} />
-                    <ClosedCaptionButton {...buttonProps} />
-                    <SharedDocumentButton {...buttonProps} />
-                    <MuteEveryoneButton {...buttonProps} />
-                    <MuteEveryonesVideoButton {...buttonProps} />
-                    <HelpButton {...buttonProps} />
-                </Collapsible>
+                {/* {!toolbarButtons.has('invite') && <InviteButton {...buttonProps} />} */}
             </BottomSheet>
         );
     }
 
 
+   
     _renderHeaderBottomSheet: () => React$Element<any>;
 
-    /**
-     * Function to render the header view in the bottom sheet header area.
-     *
-     * @returns {React$Element}
-     */
     _renderHeaderBottomSheet() {
-        return (
-            <View
-                style={{
-                    borderTopLeftRadius: 16,
-                    borderTopRightRadius: 16,
-                    height: 60,
-                    backgroundColor: '#0F1114',
-                    flexDirection: 'row',
-                }}>
-                <View style={{ width: 40, backgroundColor: 'red' }}> </View>
-                <View style={{ alignItems: 'center',
-                                justifyContent: 'center',
-                                flex:1}}>
+        const { t } = this.props;
 
-                    <Text style={{ alignSelf: 'center', color: 'white', fontSize: 15 }}>{'toolbar.option'}</Text>
+        return (
+            <View style={styles.containerHeaderBottomSheet}>
+                <View style={{ width: 40 }} />
+                <View style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flex: 1
+                }}>
+
+                    <Text style={{ alignSelf: 'center', color: 'white', fontSize: 15 }}>
+                        {t('toolbar.options')}
+                    </Text>
                 </View>
 
-                <View style={{alignSelf:'flex-end', width: 40}}>
-                    <TouchableOpacity
-                        style={{ alignSelf: 'center', height: 30, width: 30, backgroundColor: 'yellow', marginRight: 24 }}
-                        onPress={this._onCancel}>
+                <View style={{ alignSelf: 'center', width: 40 }}>
+                    <TouchableOpacity onPress={this._onCancel}>
+                        <Image source={cancelIcon} style={{ marginRight: 24 }} />
                     </TouchableOpacity>
 
                 </View>
@@ -195,6 +183,7 @@ class OverflowMenu extends PureComponent<Props, State> {
             </View>
         );
     }
+
 
 
     _renderMenuExpandToggle: () => React$Element<any>;
@@ -296,6 +285,6 @@ function _mapStateToProps(state) {
     };
 }
 
-OverflowMenu_ = connect(_mapStateToProps)(OverflowMenu);
+OverflowMenu_ = connect(_mapStateToProps)(translate(OverflowMenu));
 
 export default OverflowMenu_;

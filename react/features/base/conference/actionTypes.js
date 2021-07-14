@@ -97,6 +97,15 @@ export const CLICK_JOIN_ROOM_EVENT = 'CLICK_JOIN_ROOM_EVENT';
  */
 export const CONFERENCE_WILL_LEAVE = 'CONFERENCE_WILL_LEAVE';
 
+
+
+export const SHOW_CONFERENCE_INFORMATION = 'SHOW_CONFERENCE_INFORMATION';
+
+
+export const SHOW_CONFERENCE_MEMBERS = 'SHOW_CONFERENCE_MEMBERS';
+
+
+
 /**
  * The type of (redux) action which signals that the data channel with the
  * bridge has been established.
