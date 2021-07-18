@@ -72,7 +72,7 @@ const NavigationBar = (props: Props) => {
         <View
             pointerEvents='box-none'
             style={styles.navBarWrapper}>
-            <View style={styles.contentView}>
+            <View style={[styles.contentView,{flex:1}]}>
                 <View style={[styles.roomTimerView, { backgroundColor: 'rgba(0,0,0,0)' }]}>
                     <ConferenceTimer textStyle={styles.roomTimer} />
                 </View>
