@@ -201,6 +201,14 @@ public class JitsiMeetActivity extends FragmentActivity
         JitsiMeetLogger.i("Conference will join: " + extraData);
     }
 
+    protected void onShowConferenceInformation(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("Show Conference informationin: " + extraData);
+    }
+
+    protected void onShowConferenceMembers(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("Show conference membersn: " + extraData);
+    }
+
     protected void onParticipantJoined(HashMap<String, Object> extraData) {
         try {
             JitsiMeetLogger.i("Participant joined: ", extraData);
@@ -297,6 +305,10 @@ public class JitsiMeetActivity extends FragmentActivity
                     break;
                 case PARTICIPANT_LEFT:
                     onParticipantLeft(event.getData());
+                case SHOW_CONFERENCE_INFORMATION:
+                    onShowConferenceInformation(event.getData());
+                case SHOW_CONFERENCE_MEMBERS:
+                    onShowConferenceMembers(event.getData());
                     break;
             }
         }
