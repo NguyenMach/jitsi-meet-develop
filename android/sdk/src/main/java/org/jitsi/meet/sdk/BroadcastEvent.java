@@ -153,7 +153,7 @@ public class BroadcastEvent {
                 case VIDEO_MUTED_CHANGED_NAME:
                     return VIDEO_MUTED_CHANGED;
                 case SHOW_CONFERENCE_INFORMATION_NAME:
-                    return VIDEO_MUTED_CHANGED;
+                    return SHOW_CONFERENCE_INFORMATION;
                 case SHOW_CONFERENCE_MEMBERS_NAME:
                     return SHOW_CONFERENCE_MEMBERS;
             }
