@@ -7,7 +7,7 @@ import { ColorSchemeRegistry } from '../../../base/color-scheme';
 import { translate } from '../../../base/i18n';
 import { LoadingIndicator } from '../../../base/react';
 import { connect } from '../../../base/redux';
-import { StyleType } from '../../../base/styles';
+import { ColorPalette, StyleType } from '../../../base/styles';
 
 import OverlayFrame from './OverlayFrame';
 import styles from './styles';
@@ -56,17 +56,19 @@ class LoadConfigOverlay extends Component<Props> {
                 <View
                     style = { [
                         styles.loadingOverlayWrapper,
-                        _styles.loadingOverlayWrapper
+                        _styles.loadingOverlayWrapper,
+                        { backgroundColor:ColorPalette.primarySignet }
                     ] }>
                     <SafeAreaView>
                         <LoadingIndicator
-                            color = { _styles.indicatorColor }
+                            color = { ColorPalette.white }
                             size = 'large'
                             style = { styles.connectIndicator } />
                         <Text
                             style = { [
                                 styles.loadingOverlayText,
-                                _styles.loadingOverlayText
+                                _styles.loadingOverlayText,
+                                { color: ColorPalette.white }
                             ] }>
                             { this.props.t('connectingOverlay.joiningRoom') }
                         </Text>
