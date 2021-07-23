@@ -30,13 +30,15 @@ export default createStyleSheet({
     statsTitleText: {
         fontSize: 16,
         fontWeight: 'bold',
-        marginRight: 3
+        marginRight: 3,
+        color:ColorPalette.white
     },
 
     statsInfoText: {
         fontSize: 16,
         marginRight: 2,
-        marginLeft: 2
+        marginLeft: 2,
+        color:ColorPalette.white
     },
 
     statsInfoCell: {
