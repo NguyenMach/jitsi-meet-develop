@@ -74,8 +74,7 @@ const styles = {
         justifyContent: 'space-between',
         paddingHorizontal: BoxModel.margin,
         paddingVertical: 8,
-        marginHorizontal:20,
-        marginBottom: 16
+        marginHorizontal:20
     },
 
     /**

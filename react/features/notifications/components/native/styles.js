@@ -41,7 +41,8 @@ export default {
         backgroundColor: '#768898',
         flexDirection: 'row',
         minHeight: 48,
-        marginTop: 0.5 * BoxModel.margin
+        marginTop: 0.5 * BoxModel.margin,
+        borderRadius:25
     },
 
     /**

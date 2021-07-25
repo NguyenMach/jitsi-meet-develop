@@ -154,8 +154,8 @@ class Conference extends AbstractConference<Props, *> {
             <Container style = { styles.conference }>
                 <StatusBar
                     barStyle = 'light-content'
-                    hidden = { false }
-                    translucent = { false } />
+                    hidden = { _fullscreenEnabled }
+                    translucent = { _fullscreenEnabled } />
                 { this._renderContent() }
             </Container>
         );
@@ -291,7 +291,9 @@ class Conference extends AbstractConference<Props, *> {
                     pointerEvents = 'box-none'
                     style = { styles.navBarSafeView }>
                     <NavigationBar />
+                    <View style={{position:'absolute', width:'100%', marginTop:32}}>
                     { this._renderNotificationsContainer() }
+                    </View>
                     <KnockingParticipantList />
                 </SafeAreaView>
 

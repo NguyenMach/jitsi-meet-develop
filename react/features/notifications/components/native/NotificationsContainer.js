@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { View } from 'react-native';
+import { View , SafeAreaView} from 'react-native';
 
 import { connect } from '../../../base/redux';
 import AbstractNotificationsContainer, {
@@ -47,17 +47,17 @@ class NotificationsContainer
         }
 
         return (
-            <View
+            <SafeAreaView
                 pointerEvents = 'box-none'
                 style = { [
                     styles.notificationContainer,
-                    this.props.style
+                    this.props.style,{marginHorizontal:16}
                 ] } >
                 <Notification
                     { ...theNotification.props }
                     onDismissed = { this._onDismissed }
                     uid = { theNotification.uid } />
-            </View>
+            </SafeAreaView>
         );
     }
 
