@@ -6,7 +6,7 @@ import { KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
 import { ColorSchemeRegistry } from '../../color-scheme';
 import { HeaderWithNavigation, SlidingView } from '../../react';
 import { connect } from '../../redux';
-import { StyleType } from '../../styles';
+import { ColorPalette, StyleType } from '../../styles';
 import { setActiveModalId } from '../actions';
 
 import styles from './styles';
@@ -120,7 +120,7 @@ class JitsiModal extends PureComponent<Props> {
                     <HeaderWithNavigation
                         { ...headerProps }
                         onPressBack = { this._onRequestClose } />
-                    <SafeAreaView style = { styles.safeArea }>
+                    <SafeAreaView style = { [styles.safeArea, {backgroundColor:ColorPalette.primarySignet}] }>
                         { children }
                     </SafeAreaView>
                     { footerComponent && footerComponent() }

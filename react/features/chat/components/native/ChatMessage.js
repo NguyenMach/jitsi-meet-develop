@@ -8,7 +8,7 @@ import { ColorSchemeRegistry } from '../../../base/color-scheme';
 import { translate } from '../../../base/i18n';
 import { Linkify } from '../../../base/react';
 import { connect } from '../../../base/redux';
-import { type StyleType } from '../../../base/styles';
+import { type StyleType, ColorPalette } from '../../../base/styles';
 import { MESSAGE_TYPE_ERROR, MESSAGE_TYPE_LOCAL } from '../../constants';
 import { replaceNonUnicodeEmojis } from '../../functions';
 import AbstractChatMessage, { type Props as AbstractProps } from '../AbstractChatMessage';
@@ -75,7 +75,7 @@ class ChatMessage extends AbstractChatMessage<Props> {
             <View style = { styles.messageWrapper } >
                 { this._renderAvatar() }
                 <View style = { detailsWrapperStyle }>
-                    <View style = { messageBubbleStyle }>
+                    <View style = { [messageBubbleStyle,{backgroundColor:"#1B1D1F"} ]}>
                         <View style = { styles.textWrapper } >
                             { this._renderDisplayName() }
                             <Linkify linkStyle = { styles.chatLink }>

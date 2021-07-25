@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import ReactLinkify from 'react-linkify';
 import { Text } from 'react-native';
 
-import { type StyleType } from '../../../styles';
+import { type StyleType, ColorPalette } from '../../../styles';
 
 import Link from './Link';
 
@@ -46,7 +46,7 @@ export default class Linkify extends Component<Props> {
         return (
             <ReactLinkify
                 componentDecorator = { this._componentDecorator }>
-                <Text selectable = { true }>
+                <Text style = {{color:ColorPalette.white}} selectable = { true }>
                     { this.props.children }
                 </Text>
             </ReactLinkify>

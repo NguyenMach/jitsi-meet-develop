@@ -5,7 +5,7 @@ import { SafeAreaView, StatusBar, View } from 'react-native';
 
 import { ColorSchemeRegistry } from '../../../color-scheme';
 import { connect } from '../../../redux';
-import { isDarkColor } from '../../../styles';
+import { ColorPalette, isDarkColor } from '../../../styles';
 
 // Register style
 import './headerstyles';
@@ -50,10 +50,10 @@ class Header extends PureComponent<Props> {
         const { _styles } = this.props;
 
         return (
-            <View style = { _styles.headerOverlay }>
+            <View style = { {backgroundColor:ColorPalette.primarySignet} }>
                 <StatusBar
                     backgroundColor = { _styles.statusBar }
-                    barStyle = { this._getStatusBarContentColor() }
+                    barStyle = { STATUSBAR_LIGHT }
                     translucent = { false } />
                 <SafeAreaView>
                     <View

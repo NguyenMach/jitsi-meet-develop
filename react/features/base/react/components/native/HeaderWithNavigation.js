@@ -1,8 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
+import { View } from 'react-native';
 
 import { translate } from '../../../i18n';
+import { ColorPalette } from '../../../styles';
 
 import BackButton from './BackButton';
 import ForwardButton from './ForwardButton';
@@ -51,7 +53,7 @@ class HeaderWithNavigation extends Component<Props> {
         const { onPressBack, onPressForward } = this.props;
 
         return (
-            <Header>
+            <Header  style={{backgroundColor:ColorPalette.primarySignet}}>
                 { onPressBack && <BackButton onPress = { onPressBack } /> }
                 <HeaderLabel labelKey = { this.props.headerLabelKey } />
                 { onPressForward && <ForwardButton

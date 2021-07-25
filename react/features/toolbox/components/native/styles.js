@@ -74,7 +74,8 @@ const styles = {
         justifyContent: 'space-between',
         paddingHorizontal: BoxModel.margin,
         paddingVertical: 8,
-        marginHorizontal:20
+        marginHorizontal:20,
+        marginBottom: 16
     },
 
     /**
@@ -86,7 +87,7 @@ const styles = {
         width: '100%',
         maxWidth: 580,
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
     },
 
     containerHeaderBottomSheet:{

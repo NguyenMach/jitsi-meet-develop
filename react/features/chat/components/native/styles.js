@@ -55,11 +55,12 @@ export default {
         borderTopColor: 'rgb(209, 219, 231)',
         borderTopWidth: 1,
         flexDirection: 'row',
-        paddingHorizontal: BoxModel.padding
+        paddingHorizontal: BoxModel.padding,
+        marginTop:20
     },
 
     inputField: {
-        color: 'rgb(28, 32, 37)',
+        color: ColorPalette.white,
         flex: 1,
         height: 48
     },
