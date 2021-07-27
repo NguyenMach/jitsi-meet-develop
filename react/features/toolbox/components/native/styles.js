@@ -2,6 +2,7 @@
 
 import { ColorSchemeRegistry, schemeColor } from '../../../base/color-scheme';
 import { BoxModel, ColorPalette } from '../../../base/styles';
+import { Platform } from 'react-native';
 
 const BUTTON_SIZE = 52;
 
@@ -87,6 +88,7 @@ const styles = {
         maxWidth: 580,
         marginLeft: 'auto',
         marginRight: 'auto',
+        marginBottom: Platform.OS === 'ios' ? 0 : 18,
     },
 
     containerHeaderBottomSheet:{
