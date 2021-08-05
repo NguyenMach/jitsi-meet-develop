@@ -6,7 +6,7 @@ import { ColorSchemeRegistry, schemeColor } from '../../../color-scheme';
 import { BoxModel, ColorPalette } from '../../../styles';
 import { PREFERRED_DIALOG_SIZE } from '../../constants';
 
-const BORDER_RADIUS = 5;
+const BORDER_RADIUS = 8;
 
 export const FIELD_UNDERLINE = ColorPalette.transparent;
 
