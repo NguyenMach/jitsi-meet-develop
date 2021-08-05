@@ -39,7 +39,7 @@ class AlertDialog extends BaseSubmitDialog<Props, *> {
                 : this._renderHTML(t(contentKey.key, contentKey.params));
 
         return (
-            <Text style = { _dialogStyles.text }>
+            <Text style = { [_dialogStyles.text, {color:'white'}] }>
                 { content }
             </Text>
         );

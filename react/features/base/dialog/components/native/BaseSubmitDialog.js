@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { StyleType } from '../../../styles';
+import { ColorPalette, StyleType } from '../../../styles';
 
 import BaseDialog, { type Props as BaseProps } from './BaseDialog';
 import {
@@ -57,7 +57,7 @@ class BaseSubmitDialog<P: Props, S: *> extends BaseDialog<P, S> {
 
         return (
             <View>
-                <View style = { brandedDialog.mainWrapper }>
+                <View style = { [brandedDialog.mainWrapper] }>
                     { this._renderSubmittable() }
                 </View>
                 <View style = { brandedDialog.buttonWrapper }>
@@ -69,7 +69,11 @@ class BaseSubmitDialog<P: Props, S: *> extends BaseDialog<P, S> {
                             _dialogStyles.button,
                             additionalButtons
                                 ? null : brandedDialog.buttonFarLeft,
-                            brandedDialog.buttonFarRight
+                            {
+                                backgroundColor: 'rgba(255,255,255,.15)',
+                                margin: 16,
+                                borderRadius:8
+                            }
                         ] }>
                         <Text style = { _dialogStyles.buttonLabel }>
                             { t(this._getSubmitButtonKey()) }

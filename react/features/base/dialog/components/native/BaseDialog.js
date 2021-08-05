@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { Icon, IconClose } from '../../../icons';
-import { StyleType } from '../../../styles';
+import { StyleType ,ColorPalette } from '../../../styles';
 import AbstractDialog, {
     type Props as AbstractProps,
     type State
@@ -63,7 +63,8 @@ class BaseDialog<P: Props, S: State> extends AbstractDialog<P, S> {
                         pointerEvents = 'box-none'
                         style = { [
                             _dialogStyles.dialog,
-                            style
+                            style,
+                            {backgroundColor:ColorPalette.primarySignet, borderRadius: 8}
                         ] }>
                         <TouchableOpacity
                             onPress = { this._onCancel }
