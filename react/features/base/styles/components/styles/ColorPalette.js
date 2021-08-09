@@ -33,6 +33,7 @@ export const ColorPalette = {
     warning: 'rgb(215, 121, 118)',
     white: '#FFFFFF',
     primarySignet: '#0F1114',
+    color_33EFA2:'#33EFA2',
 
     /**
      * These are colors from the atlaskit to be used on mobile, when needed.

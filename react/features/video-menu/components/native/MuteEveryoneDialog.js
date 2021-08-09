@@ -38,7 +38,7 @@ class MuteEveryoneDialog extends AbstractMuteEveryoneDialog<Props> {
             <ConfirmDialog
                 okKey = 'dialog.muteParticipantButton'
                 onSubmit = { this._onSubmit } >
-                <Text style = { this.props._dialogStyles.text }>
+                <Text style = { [this.props._dialogStyles.text, {color:'white'} ]}>
                     { `${this.props.title} \n\n ${this.props.content}` }
                 </Text>
             </ConfirmDialog>

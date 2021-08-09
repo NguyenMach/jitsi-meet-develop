@@ -5,7 +5,7 @@ import { Text, TouchableOpacity } from 'react-native';
 
 import { translate } from '../../../i18n';
 import { connect } from '../../../redux';
-import { StyleType } from '../../../styles';
+import { ColorPalette, StyleType } from '../../../styles';
 import { _abstractMapStateToProps } from '../../functions';
 
 import { type Props as BaseProps } from './BaseDialog';
@@ -63,9 +63,14 @@ class ConfirmDialog extends BaseSubmitDialog<Props, *> {
                 style = { [
                     _dialogStyles.button,
                     brandedDialog.buttonFarLeft,
-                    _dialogStyles.buttonSeparator
+                    _dialogStyles.buttonSeparator,
+                    {
+                        margin: 16,
+                        borderRadius:8,
+                        backgroundColor:ColorPalette.color_33EFA2
+                    }
                 ] }>
-                <Text style = { _dialogStyles.buttonLabel }>
+                <Text style = { [_dialogStyles.buttonLabel, {color:'black'}] }>
                     { t(cancelKey || 'dialog.confirmNo') }
                 </Text>
             </TouchableOpacity>
@@ -89,7 +94,7 @@ class ConfirmDialog extends BaseSubmitDialog<Props, *> {
                 : this._renderHTML(t(contentKey.key, contentKey.params));
 
         return (
-            <Text style = { _dialogStyles.text }>
+            <Text style = { [_dialogStyles.text, {color:'white'}] }>
                 { content }
             </Text>
         );
