@@ -408,7 +408,7 @@
         "invitedOneMember": "{{name}} đã được mời",
         "invitedThreePlusMembers": "",
         "invitedTwoMembers": "",
-        "kickParticipant": "",
+        "kickParticipant": "{{kicked}} đã bị đẩy ra bởi {{kicker}}",
         "me": "Tôi",
         "moderator": "Quyền của người điều hành đã được cấp!",
         "muted": "Bạn đã bắt đầu cuộc trò chuyện bị tắt tiếng.",
