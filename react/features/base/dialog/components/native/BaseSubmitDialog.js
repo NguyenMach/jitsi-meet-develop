@@ -70,7 +70,7 @@ class BaseSubmitDialog<P: Props, S: *> extends BaseDialog<P, S> {
                             additionalButtons
                                 ? null : brandedDialog.buttonFarLeft,
                             {
-                                backgroundColor:'#1E9564',
+                                backgroundColor:'rgba(30,149,100,0.20)',
                                 margin: 16,
                                 borderRadius:8
                             }
