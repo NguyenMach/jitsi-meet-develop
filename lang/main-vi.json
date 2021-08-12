@@ -209,7 +209,7 @@
         "recording": "Đang ghi âm",
         "recordingDisabledForGuestTooltip": "Khách không thể khởi tạo ghi hình.",
         "recordingDisabledTooltip": "Khởi động ghi âm đã bị tắt.",
-        "rejoinNow": "Tham gia lại luôn",
+        "rejoinNow": "Tham gia lại",
         "remoteControlAllowedMessage": "{{user}} đã chấp nhận yêu cầu điều khiển từ xa của bạn!",
         "remoteControlDeniedMessage": "{{user}} đã từ chối yêu cầu điều khiển từ xa của bạn!",
         "remoteControlErrorMessage": "Đã xảy ra lỗi khi cố gắng yêu cầu quyền điều khiển từ xa từ {{user}}!",

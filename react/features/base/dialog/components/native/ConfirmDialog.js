@@ -66,11 +66,12 @@ class ConfirmDialog extends BaseSubmitDialog<Props, *> {
                     _dialogStyles.buttonSeparator,
                     {
                         margin: 16,
+                        marginRight:0,
                         borderRadius:8,
-                        backgroundColor:ColorPalette.color_33EFA2
+                        backgroundColor:'rgba(255,255,255,0.06)'
                     }
                 ] }>
-                <Text style = { [_dialogStyles.buttonLabel, {color:'black'}] }>
+                <Text style = { [_dialogStyles.buttonLabel, {color:'white'}] }>
                     { t(cancelKey || 'dialog.confirmNo') }
                 </Text>
             </TouchableOpacity>
