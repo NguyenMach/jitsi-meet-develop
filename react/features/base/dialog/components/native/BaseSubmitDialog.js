@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ColorPropType } from 'react-native';
 
 import { ColorPalette, StyleType } from '../../../styles';
 
@@ -70,12 +70,12 @@ class BaseSubmitDialog<P: Props, S: *> extends BaseDialog<P, S> {
                             additionalButtons
                                 ? null : brandedDialog.buttonFarLeft,
                             {
-                                backgroundColor: 'rgba(255,255,255,.15)',
+                                backgroundColor:'#1E9564',
                                 margin: 16,
                                 borderRadius:8
                             }
                         ] }>
-                        <Text style = { _dialogStyles.buttonLabel }>
+                        <Text style = { [_dialogStyles.buttonLabel, {color:ColorPalette.color_33EFA2}] }>
                             { t(this._getSubmitButtonKey()) }
                         </Text>
                     </TouchableOpacity>

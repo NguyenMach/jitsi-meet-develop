@@ -64,15 +64,8 @@ class BaseDialog<P: Props, S: State> extends AbstractDialog<P, S> {
                         style = { [
                             _dialogStyles.dialog,
                             style,
-                            {backgroundColor:ColorPalette.primarySignet, borderRadius: 8}
+                            {backgroundColor:ColorPalette.primarySignet, borderRadius: 8, paddingTop:20}
                         ] }>
-                        <TouchableOpacity
-                            onPress = { this._onCancel }
-                            style = { styles.closeWrapper }>
-                            <Icon
-                                src = { IconClose }
-                                style = { _dialogStyles.closeStyle } />
-                        </TouchableOpacity>
                         { this._renderContent() }
                     </View>
                 </KeyboardAvoidingView>

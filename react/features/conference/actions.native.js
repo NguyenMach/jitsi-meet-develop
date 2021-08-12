@@ -31,7 +31,8 @@ export function notifyKickedOut(participant: Object, submit: ?Function) {
                     participantDisplayName: getParticipantDisplayName(getState, participant.getId())
                 }
             },
-            onSubmit: submit
+            onSubmit: submit,
+            okKey:'dialog.Ok_understood'
         }));
     };
 }
