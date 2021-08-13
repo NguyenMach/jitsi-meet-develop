@@ -400,8 +400,8 @@
     "me": "Tôi",
     "notify": {
         "connectedOneMember": "{{name}} đã tham gia cuộc họp",
-        "connectedThreePlusMembers": "{{name}} và{{count}} khác đã tham gia cuộc họp",
-        "connectedTwoMembers": "{{first}} và{{second}} đã tham gia cuộc họp",
+        "connectedThreePlusMembers": "{{name}} và {{count}} khác đã tham gia cuộc họp",
+        "connectedTwoMembers": "{{first}} và {{second}} đã tham gia cuộc họp",
         "disconnected": "đã ngắt kết nối",
         "focus": "Hội nghị tập trung",
         "focusFail": "{{component}} không khả dụng - thử lại trong {{ms}} giây",
