@@ -469,8 +469,8 @@ export function participantMutedUs(participant, track) {
         const isAudio = track.isAudioTrack();
 
         dispatch(showNotification({
-            descriptionKey: isAudio ? 'notify.mutedRemotelyDescription' : 'notify.videoMutedRemotelyDescription',
             titleKey: isAudio ? 'notify.mutedRemotelyTitle' : 'notify.videoMutedRemotelyTitle',
+            maxLines:2,
             titleArguments: {
                 participantDisplayName:
                     getParticipantDisplayName(getState, participant.getId())
