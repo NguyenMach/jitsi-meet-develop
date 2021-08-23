@@ -17,6 +17,10 @@ import AbstractPageReloadOverlay, {
 
 import OverlayFrame from './OverlayFrame';
 
+import {
+    cancelRejoinedConference,
+} from '../../../base/conference';
+
 type Props = AbstractProps & {
 
     /**
@@ -60,6 +64,7 @@ class PageReloadOverlay extends AbstractPageReloadOverlay<Props> {
         clearInterval(this._interval);
         this.props.dispatch(setFatalError(undefined));
         this.props.dispatch(appNavigate(undefined));
+        this.props.dispatch(cancelRejoinedConference(undefined))
     }
 
     _onReloadNow: () => void

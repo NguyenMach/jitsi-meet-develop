@@ -20,6 +20,7 @@ import {
     isRoomValid,
     SHOW_CONFERENCE_INFORMATION,
     SHOW_CONFERENCE_MEMBERS,
+    CANCEL_REJOINED_CONFERENCE
 } from '../../base/conference';
 import { LOAD_CONFIG_ERROR } from '../../base/config';
 import {
@@ -210,6 +211,17 @@ MiddlewareRegistry.register(store => next => action => {
                 /* data */ {
                     conference:roomName,
                     url: url
+                });
+            break
+        }
+
+        case CANCEL_REJOINED_CONFERENCE: {
+            const roomName = getRoomName(store.getState());    
+            sendEvent(
+                store,
+                CANCEL_REJOINED_CONFERENCE,
+                /* data */ {
+                    conference:roomName,
                 });
             break
         }

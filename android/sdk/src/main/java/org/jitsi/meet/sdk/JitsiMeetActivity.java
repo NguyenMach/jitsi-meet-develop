@@ -205,6 +205,10 @@ public class JitsiMeetActivity extends FragmentActivity
         JitsiMeetLogger.i("onShowConferenceMembers: " + extraData);
     }
 
+    protected void onCancelRejoinedConference(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("onCancelRejoinedConference: " + extraData);
+    }
+
 
     protected void onConferenceWillJoin(HashMap<String, Object> extraData) {
         JitsiMeetLogger.i("Conference will join: " + extraData);
@@ -312,6 +316,9 @@ public class JitsiMeetActivity extends FragmentActivity
                     break;
                 case SHOW_CONFERENCE_MEMBERS:
                     onShowConferenceMembers(event.getData());
+                    break;
+                case CANCEL_REJOINED_CONFERENCE:
+                    onCancelRejoinedConference(event.getData());
                     break;
             }
         }

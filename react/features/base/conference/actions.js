@@ -53,7 +53,8 @@ import {
     SET_START_MUTED_POLICY,
     CLICK_JOIN_ROOM_EVENT,
     SHOW_CONFERENCE_INFORMATION,
-    SHOW_CONFERENCE_MEMBERS
+    SHOW_CONFERENCE_MEMBERS,
+    CANCEL_REJOINED_CONFERENCE
 } from './actionTypes';
 import {
     AVATAR_URL_COMMAND,
@@ -419,6 +420,12 @@ export function showConferenceMembers(conference: Object) {
     };
 }
 
+export function cancelRejoinedConference(conference: Object) {
+    return {
+        type: CANCEL_REJOINED_CONFERENCE,
+        conference
+    };
+}
 
 /**
  * Signals the intention of the application to have the local participant leave

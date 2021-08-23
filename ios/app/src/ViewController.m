@@ -112,6 +112,10 @@
   [self _onJitsiMeetViewDelegateEvent:@"showConferenceInformation" withData:data];
 }
 
+- (void)cancelRejoinedConference:(NSDictionary *)data{
+  [self _onJitsiMeetViewDelegateEvent:@"cancelRejoinedConference" withData:data];
+}
+
 
 #if 0
 - (void)enterPictureInPicture:(NSDictionary *)data {

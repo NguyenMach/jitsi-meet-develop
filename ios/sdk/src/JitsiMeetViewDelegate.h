@@ -133,5 +133,12 @@
 - (void)showConferenceMembers:(NSDictionary *)data;
 
 
+/**
+ * Called when tap to Cancel rejoin to Conference .
+ *
+ * The `data` dictionary.
+ */
+- (void)cancelRejoinedConference:(NSDictionary *)data;
+
 
 @end
