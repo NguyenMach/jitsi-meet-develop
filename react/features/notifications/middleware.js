@@ -74,6 +74,14 @@ MiddlewareRegistry.register(store => next => action => {
                     titleKey: 'notify.somebody',
                     title: participant.name
                 }, NOTIFICATION_TIMEOUT));
+                
+            }else{
+                store.dispatch(showNotification({
+                    titleArguments: {
+                        name: participant.name
+                    },
+                    titleKey: 'notify.hasLeft'
+                }, NOTIFICATION_TIMEOUT));
             }
         }
 

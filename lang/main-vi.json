@@ -429,7 +429,8 @@
         "unmute": "",
         "newDeviceCameraTitle": "Camera mới được phát hiện",
         "newDeviceAudioTitle": "Thiết bị âm thanh mới được phát hiện",
-        "newDeviceAction": "Sử dụng"
+        "newDeviceAction": "Sử dụng",
+        "hasLeft": "{{name}} đã rời cuộc họp"
     },
     "passwordSetRemotely": "được thiết lập bởi một người khác",
     "passwordDigitsOnly": "",
@@ -560,6 +561,7 @@
             "moreActions": "Mở/Đóng Thêm hành động",
             "moreActionsMenu": "Menu Thêm hành động",
             "mute": "Mở/Đóng Tắt tiếng",
+            "muteEveryone": "Tắt tiếng tất cả",
             "pip": "Mở/Đóng chế độ Hình-trong-Hình",
             "profile": "Chỉnh sửa hồ sơ cá nhân",
             "raiseHand": "Mở/Đóng Giơ tay",
@@ -602,6 +604,7 @@
         "lowerYourHand": "Hạ tay",
         "moreActions": "Thêm hành động",
         "mute": "Tắt tiếng / Bật tiếng",
+        "muteEveryone": "Tắt tiếng tất cả",
         "openChat": "Mở Chat",
         "pip": "Vào chế độ Ảnh-trong-Ảnh",
         "profile": "Chỉnh sửa hồ sơ cá nhân",
