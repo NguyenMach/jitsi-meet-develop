@@ -87,6 +87,7 @@ class ChatInputBar extends Component<Props, State> {
                     ref = { this._onFieldReferenceAvailable }
                     returnKeyType = 'send'
                     style = { styles.inputField }
+                    disableFullscreenUI = {true}
                     value = { this.state.message } />
                 {
                     this.state.showSend && <TouchableOpacity onPress = { this._onSubmit }>

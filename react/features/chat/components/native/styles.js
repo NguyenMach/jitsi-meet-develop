@@ -99,7 +99,7 @@ export default {
     },
 
     sendButtonIcon: {
-        color: ColorPalette.darkGrey,
+        color: 'white',
         fontSize: 22
     },
 
