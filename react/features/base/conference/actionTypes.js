@@ -108,6 +108,8 @@ export const SHOW_CONFERENCE_MEMBERS = 'SHOW_CONFERENCE_MEMBERS';
 
 export const CANCEL_REJOINED_CONFERENCE = 'CANCEL_REJOINED_CONFERENCE';
 
+export const REJOIN_CONFERENCE_FAILED = 'REJOIN_CONFERENCE_FAILED';
+
 
 /**
  * The type of (redux) action which signals that the data channel with the

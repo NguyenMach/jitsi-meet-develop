@@ -20,7 +20,8 @@ import {
     isRoomValid,
     SHOW_CONFERENCE_INFORMATION,
     SHOW_CONFERENCE_MEMBERS,
-    CANCEL_REJOINED_CONFERENCE
+    CANCEL_REJOINED_CONFERENCE,
+    REJOIN_CONFERENCE_FAILED
 } from '../../base/conference';
 import { LOAD_CONFIG_ERROR } from '../../base/config';
 import {
@@ -221,6 +222,20 @@ MiddlewareRegistry.register(store => next => action => {
                 store,
                 CANCEL_REJOINED_CONFERENCE,
                 /* data */ {
+                    conference:roomName,
+                });
+            break
+        }
+
+        case REJOIN_CONFERENCE_FAILED: {
+            const roomName = getRoomName(store.getState());    
+            const { data } = action  
+
+            sendEvent(
+                store,
+                REJOIN_CONFERENCE_FAILED,
+                /* data */ {
+                    ...data,
                     conference:roomName,
                 });
             break

@@ -12,6 +12,7 @@ import { connect } from '../../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../../base/toolbox/components';
 import {
     showConferenceMembers,
+    rejoinConferenceFailed
 } from '../../../base/conference';
 
 /**

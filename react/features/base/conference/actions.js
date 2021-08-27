@@ -54,7 +54,8 @@ import {
     CLICK_JOIN_ROOM_EVENT,
     SHOW_CONFERENCE_INFORMATION,
     SHOW_CONFERENCE_MEMBERS,
-    CANCEL_REJOINED_CONFERENCE
+    CANCEL_REJOINED_CONFERENCE,
+    REJOIN_CONFERENCE_FAILED
 } from './actionTypes';
 import {
     AVATAR_URL_COMMAND,
@@ -424,6 +425,13 @@ export function cancelRejoinedConference(conference: Object) {
     return {
         type: CANCEL_REJOINED_CONFERENCE,
         conference
+    };
+}
+
+export function rejoinConferenceFailed(data: Object) {
+    return {
+        type: REJOIN_CONFERENCE_FAILED,
+        data
     };
 }
 

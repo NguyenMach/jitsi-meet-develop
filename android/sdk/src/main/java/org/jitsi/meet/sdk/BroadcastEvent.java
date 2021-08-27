@@ -89,7 +89,8 @@ public class BroadcastEvent {
         VIDEO_MUTED_CHANGED("org.jitsi.meet.VIDEO_MUTED_CHANGED"),
         SHOW_CONFERENCE_INFORMATION("org.jitsi.meet.SHOW_CONFERENCE_INFORMATION"),
         SHOW_CONFERENCE_MEMBERS("org.jitsi.meet.SHOW_CONFERENCE_MEMBERS"),
-        CANCEL_REJOINED_CONFERENCE("org.jitsi.meet.CANCEL_REJOINED_CONFERENCE");
+        CANCEL_REJOINED_CONFERENCE("org.jitsi.meet.CANCEL_REJOINED_CONFERENCE"),
+        REJOIN_CONFERENCE_FAILED("org.jitsi.meet.REJOIN_CONFERENCE_FAILED");
 
 
         private static final String CONFERENCE_WILL_JOIN_NAME = "CONFERENCE_WILL_JOIN";
@@ -107,6 +108,7 @@ public class BroadcastEvent {
         private static final String SHOW_CONFERENCE_INFORMATION_NAME = "SHOW_CONFERENCE_INFORMATION";
         private static final String SHOW_CONFERENCE_MEMBERS_NAME = "SHOW_CONFERENCE_MEMBERS";
         private static final String CANCEL_REJOINED_CONFERENCE_NAME = "CANCEL_REJOINED_CONFERENCE";
+        private static final String REJOIN_CONFERENCE_FAILED_NAME = "REJOIN_CONFERENCE_FAILED";
 
 
         private final String action;
@@ -160,6 +162,8 @@ public class BroadcastEvent {
                     return SHOW_CONFERENCE_MEMBERS;
                 case CANCEL_REJOINED_CONFERENCE_NAME:
                     return CANCEL_REJOINED_CONFERENCE;
+                case REJOIN_CONFERENCE_FAILED_NAME:
+                    return REJOIN_CONFERENCE_FAILED;
             }
 
             return null;

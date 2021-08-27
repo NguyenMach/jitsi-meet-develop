@@ -22,11 +22,19 @@ import {
     WAIT_FOR_OWNER
 } from './actionTypes';
 import {
+    openRejoinDialog,
     openLoginDialog,
     openWaitForOwnerDialog,
     stopWaitForOwner,
     waitForOwner } from './actions.native';
+
+import { notifyRejoinFailed } from '../conference/actions.native';
+    
 import { LoginDialog, WaitForOwnerDialog } from './components';
+import {
+    rejoinConferenceFailed,
+} from '../base/conference';
+
 
 /**
  * Middleware that captures connection or conference failed errors and controls
@@ -112,8 +120,15 @@ MiddlewareRegistry.register(store => next => action => {
         if (error
                 && error.name === JitsiConnectionErrors.PASSWORD_REQUIRED
                 && typeof error.recoverable === 'undefined') {
+            console.log("---->Rejoin failed",error);
+
             error.recoverable = true;
-            store.dispatch(openLoginDialog());
+            store.dispatch(notifyRejoinFailed(() => {
+                let data = { errorType:"session_expired" }
+                store.dispatch(rejoinConferenceFailed(data));
+                store.dispatch(appNavigate(undefined));
+                }
+            ));
         }
         break;
     }

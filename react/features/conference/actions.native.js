@@ -36,3 +36,17 @@ export function notifyKickedOut(participant: Object, submit: ?Function) {
         }));
     };
 }
+
+export function notifyRejoinFailed(submit: ?Function) {
+    return (dispatch: Dispatch<any>, getState: Function) => {
+        
+        dispatch(openDialog(AlertDialog, {
+            contentKey: {
+                key: 'dialog.sessionExpired'
+            },
+            onSubmit: submit,
+            okKey:'dialog.Ok_understood'
+        }));
+    };
+}
+

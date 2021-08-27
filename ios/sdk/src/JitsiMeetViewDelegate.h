@@ -140,5 +140,13 @@
  */
 - (void)cancelRejoinedConference:(NSDictionary *)data;
 
+/**
+ * Called when rejoin to Conference failed .
+ *
+ * The `data` dictionary.
+ */
+- (void)rejoinConferenceFailed:(NSDictionary *)data;
+
+
 
 @end

@@ -209,6 +209,10 @@ public class JitsiMeetActivity extends FragmentActivity
         JitsiMeetLogger.i("onCancelRejoinedConference: " + extraData);
     }
 
+    protected void onRejoinConferenceFailed(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("onRejoinConferenceFailed: " + extraData);
+    }
+
 
     protected void onConferenceWillJoin(HashMap<String, Object> extraData) {
         JitsiMeetLogger.i("Conference will join: " + extraData);
@@ -319,6 +323,9 @@ public class JitsiMeetActivity extends FragmentActivity
                     break;
                 case CANCEL_REJOINED_CONFERENCE:
                     onCancelRejoinedConference(event.getData());
+                    break;
+                case REJOIN_CONFERENCE_FAILED:
+                    onRejoinConferenceFailed(event.getData());
                     break;
             }
         }
