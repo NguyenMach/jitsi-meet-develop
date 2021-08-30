@@ -15,6 +15,7 @@ import {
     JitsiConnectionErrors
 } from '../base/lib-jitsi-meet';
 import { MiddlewareRegistry } from '../base/redux';
+import { disconnect } from '../base/connection';
 
 import {
     CANCEL_LOGIN,
@@ -125,8 +126,9 @@ MiddlewareRegistry.register(store => next => action => {
             error.recoverable = true;
             store.dispatch(notifyRejoinFailed(() => {
                 let data = { errorType:"session_expired" }
-                store.dispatch(rejoinConferenceFailed(data));
+                store.dispatch(disconnect(true));
                 store.dispatch(appNavigate(undefined));
+                store.dispatch(rejoinConferenceFailed(data));
                 }
             ));
         }
