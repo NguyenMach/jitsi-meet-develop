@@ -213,6 +213,13 @@ public class JitsiMeetActivity extends FragmentActivity
         JitsiMeetLogger.i("onRejoinConferenceFailed: " + extraData);
     }
 
+    protected void onEndConference(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("onEndConference: " + extraData);
+    }
+
+    protected void onLeaveConference(HashMap<String, Object> extraData) {
+        JitsiMeetLogger.i("onLeaveConference: " + extraData);
+    }
 
     protected void onConferenceWillJoin(HashMap<String, Object> extraData) {
         JitsiMeetLogger.i("Conference will join: " + extraData);
@@ -326,6 +333,12 @@ public class JitsiMeetActivity extends FragmentActivity
                     break;
                 case REJOIN_CONFERENCE_FAILED:
                     onRejoinConferenceFailed(event.getData());
+                    break;
+                case END_CONFERENCE:
+                    onEndConference(event.getData());
+                    break;
+                case LEAVE_CONFERENCE:
+                    onLeaveConference(event.getData());
                     break;
             }
         }

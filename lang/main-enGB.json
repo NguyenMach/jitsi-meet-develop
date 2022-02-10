@@ -281,7 +281,11 @@
         "muteEveryoneTitle": "",
         "muteEveryoneDialog": "",
         "muteEveryoneElseTitle": "",
-        "muteEveryoneElseDialog": ""
+        "muteEveryoneElseDialog": "",
+        "leave": "Leave",
+        "end": "End",
+        "endmeeting_title": "End meeting",
+        "endmeeting_message": "Do you want end this meeting? \nPress Leave to keep this meeting running for remain participants"
     },
     "dialOut": {
         "statusMessage": "is now {{status}}"

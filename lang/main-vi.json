@@ -258,7 +258,11 @@
         "WaitForHostMsgWOk": "Cuộc họp <b>{{room}}</b> chưa được khởi tạo. Nếu bạn là chủ nghị vui lòng nhấn OK để xác thực. Nếu không, vui lòng đợi chủ nghị.",
         "WaitingForHost": "Đang đợi chủ nghị …",
         "Yes": "Có",
-        "yourEntireScreen": "Toàn bộ màn hình của bạn"
+        "yourEntireScreen": "Toàn bộ màn hình của bạn",
+        "leave": "Rời",
+        "end": "Kết thúc",
+        "endmeeting_title": "Kết thúc cuộc họp",
+        "endmeeting_message": "Bạn muốn kết thúc cuộc họp này? \nChọn Rời nếu muốn cuộc họp tiếp tục diễn ra"
     },
     "dialOut": {
         "statusMessage": "hiện đang {{status}}"

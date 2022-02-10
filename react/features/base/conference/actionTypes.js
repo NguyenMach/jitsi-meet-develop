@@ -110,6 +110,14 @@ export const CANCEL_REJOINED_CONFERENCE = 'CANCEL_REJOINED_CONFERENCE';
 
 export const REJOIN_CONFERENCE_FAILED = 'REJOIN_CONFERENCE_FAILED';
 
+export const HANGUP_CONFERENCE = 'HANGUP_CONFERENCE';
+
+export const CANCEL_HANGUP_CONFERENCE = 'CANCEL_HANGUP_CONFERENCE';
+
+export const LEAVE_CONFERENCE = 'LEAVE_CONFERENCE';
+
+export const END_CONFERENCE = 'END_CONFERENCE';
+
 
 /**
  * The type of (redux) action which signals that the data channel with the

@@ -54,8 +54,12 @@ import {
     CLICK_JOIN_ROOM_EVENT,
     SHOW_CONFERENCE_INFORMATION,
     SHOW_CONFERENCE_MEMBERS,
+    HANGUP_CONFERENCE,
+    CANCEL_HANGUP_CONFERENCE,
     CANCEL_REJOINED_CONFERENCE,
-    REJOIN_CONFERENCE_FAILED
+    REJOIN_CONFERENCE_FAILED,
+    LEAVE_CONFERENCE,
+    END_CONFERENCE
 } from './actionTypes';
 import {
     AVATAR_URL_COMMAND,
@@ -417,6 +421,34 @@ export function showConferenceInformation(conference: Object) {
 export function showConferenceMembers(conference: Object) {
     return {
         type: SHOW_CONFERENCE_MEMBERS,
+        conference
+    };
+}
+
+export function hangupConference(conference: Object) {
+    return {
+        type: HANGUP_CONFERENCE,
+        conference
+    };
+}
+
+export function cancelHangupConference(conference: Object) {
+    return {
+        type: CANCEL_HANGUP_CONFERENCE,
+        conference
+    };
+}
+
+export function leaveConference(conference: Object) {
+    return {
+        type: LEAVE_CONFERENCE,
+        conference
+    };
+}
+
+export function endConference(conference: Object) {
+    return {
+        type: END_CONFERENCE,
         conference
     };
 }

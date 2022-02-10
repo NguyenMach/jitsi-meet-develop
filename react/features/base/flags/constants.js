@@ -214,3 +214,10 @@ export const VIDEO_SHARE_BUTTON_ENABLED = 'video-share.enabled';
  * Default: disabled (false).
  */
 export const WELCOME_PAGE_ENABLED = 'welcomepage.enabled';
+
+
+/**
+ * Flag indicating if user is creator the conference
+ * Default: isCreator (false).
+ */
+ export const IS_CREATOR = 'isCreator';

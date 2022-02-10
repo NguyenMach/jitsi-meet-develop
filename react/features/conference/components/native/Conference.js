@@ -36,7 +36,13 @@ import type { AbstractProps } from '../AbstractConference';
 import LonelyMeetingExperience from './LonelyMeetingExperience';
 import NavigationBar from './NavigationBar';
 import styles from './styles';
-
+import HangupDialog from '../../../../features/base/dialog/components/native/HangupDialog'
+import { translate } from '../../../base/i18n';
+import {
+    cancelHangupConference,
+    leaveConference,
+    endConference
+} from '../../../base/conference';
 
 /**
  * The type of the React {@code Component} props of {@link Conference}.
@@ -115,6 +121,10 @@ class Conference extends AbstractConference<Props, *> {
         this._onClick = this._onClick.bind(this);
         this._onHardwareBackPress = this._onHardwareBackPress.bind(this);
         this._setToolboxVisible = this._setToolboxVisible.bind(this);
+        this._setHangupDialogVisible = this._setHangupDialogVisible.bind(this);
+        this._onCloseEndMeetingDialog = this._onCloseEndMeetingDialog.bind(this);
+        this._onLeaveConference = this._onLeaveConference.bind(this);
+        this._onEndConference = this._onEndConference.bind(this);
     }
 
     /**
@@ -174,6 +184,26 @@ class Conference extends AbstractConference<Props, *> {
         this._setToolboxVisible(!this.props._toolboxVisible);
     }
 
+    _onLeaveConference:() => void;
+
+    _onLeaveConference() {
+        this.props.dispatch(leaveConference("leave"));
+        this.props.dispatch(appNavigate(undefined));
+    }
+
+    _onEndConference:() => void;
+
+    _onEndConference() {
+        this.props.dispatch(endConference("end"));
+        this.props.dispatch(appNavigate(undefined));
+    }
+
+    _onCloseEndMeetingDialog: () => void;
+
+    _onCloseEndMeetingDialog() {
+        this._setHangupDialogVisible(false)
+    }
+
     _onHardwareBackPress: () => boolean;
 
     /**
@@ -211,6 +241,23 @@ class Conference extends AbstractConference<Props, *> {
             <Chat key = 'chat' />,
             <SharedDocument key = 'sharedDocument' />
         ];
+    }
+
+    _renderHangupPopup() {
+        const {
+            _isHangup,
+            t
+        } = this.props;
+
+        return (
+            <HangupDialog 
+                    title = {t("dialog.endmeeting_title")}
+                    message = {t("dialog.endmeeting_message")}
+                    visible = {_isHangup} 
+                    onClose = {this._onCloseEndMeetingDialog}
+                    didSelectLeave = {this._onLeaveConference}
+                    didSelectEnd = {this._onEndConference}/>
+        )
     }
 
     /**
@@ -303,6 +350,8 @@ class Conference extends AbstractConference<Props, *> {
 
                 { this._renderConferenceModals() }
                 {_shouldDisplayTileView && <Toolbox />}
+
+                {this._renderHangupPopup()}
             </>
         );
     }
@@ -376,6 +425,20 @@ class Conference extends AbstractConference<Props, *> {
     _setToolboxVisible(visible) {
         this.props.dispatch(setToolboxVisible(visible));
     }
+
+    _setHangupDialogVisible: (boolean) => void;
+
+    /**
+     * Dispatches an action changing the visibility of the {@link HangupDialog}.
+     *
+     * @private
+     * @param {boolean} visible - Pass {@code true} to show the
+     * {@code HangupDialog} or {@code false} to hide it.
+     * @returns {void}
+     */
+     _setHangupDialogVisible(visible) {
+        this.props.dispatch(cancelHangupConference(visible));
+    }
 }
 
 /**
@@ -415,10 +478,11 @@ function _mapStateToProps(state) {
         _filmstripVisible: isFilmstripVisible(state),
         _fullscreenEnabled: getFeatureFlag(state, FULLSCREEN_ENABLED, true),
         _largeVideoParticipantId: state['features/large-video'].participantId,
+        _isHangup: state['features/base/conference'].isHangup,
         _pictureInPictureEnabled: getFeatureFlag(state, PIP_ENABLED),
         _reducedUI: reducedUI,
         _toolboxVisible: isToolboxVisible(state)
     };
 }
 
-export default connect(_mapStateToProps)(Conference);
+export default translate(connect(_mapStateToProps)(Conference));

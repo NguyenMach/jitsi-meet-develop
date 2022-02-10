@@ -9,6 +9,10 @@ import { translate } from '../../base/i18n';
 import { connect } from '../../base/redux';
 import { AbstractHangupButton } from '../../base/toolbox/components';
 import type { AbstractButtonProps } from '../../base/toolbox/components';
+import {
+    hangupConference,
+} from '../../base/conference';
+import { getFeatureFlag, IS_CREATOR} from '../../base/flags';
 
 /**
  * The type of the React {@code Component} props of {@link HangupButton}.
@@ -45,11 +49,22 @@ class HangupButton extends AbstractHangupButton<Props, *> {
         this._hangup = _.once(() => {
             sendAnalytics(createToolbarEvent('hangup'));
 
+            const { isCreator } = this.props
+
             // FIXME: these should be unified.
             if (navigator.product === 'ReactNative') {
-                this.props.dispatch(appNavigate(undefined));
+                if (isCreator) {
+                    this.props.dispatch(hangupConference({ data: 'hangup' }));
+                }else {
+                    this.props.dispatch(appNavigate(undefined));
+                }
+
             } else {
-                this.props.dispatch(disconnect(true));
+                if (isCreator) {
+                    this.props.dispatch(hangupConference({ data: 'hangup' }));
+                }else {
+                    this.props.dispatch(disconnect(true));
+                }
             }
         });
     }
@@ -66,4 +81,18 @@ class HangupButton extends AbstractHangupButton<Props, *> {
     }
 }
 
-export default translate(connect()(HangupButton));
+/**
+ * Maps part of the redux state to the component's props.
+ *
+ * @param {Object} state - The Redux state.
+ * @returns {Props}
+ */
+ function _mapStateToProps(state) {
+    const isCreator = getFeatureFlag(state, IS_CREATOR, false);
+
+    return {
+        isCreator
+    };
+}
+
+export default translate(connect(_mapStateToProps)(HangupButton));

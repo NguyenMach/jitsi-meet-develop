@@ -319,7 +319,11 @@
         "WaitForHostMsgWOk": "La conferencia <b>{{room}}</b> aún no ha comenzado. Si eres el anfitrión, presiona Aceptar para autenticar. De lo contrario, espera a que llegue el anfitrión.",
         "WaitingForHost": "Esperando al anfitrión…",
         "Yes": "Sí",
-        "yourEntireScreen": "Toda la pantalla"
+        "yourEntireScreen": "Toda la pantalla",
+        "leave": "Leave",
+        "end": "End",
+        "endmeeting_title": "End meeting",
+        "endmeeting_message": "Do you want end this meeting? \nPress Leave to keep this meeting running for remain participants"
     },
     "dialOut": {
         "statusMessage": "está {{status}}"

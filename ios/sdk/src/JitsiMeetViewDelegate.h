@@ -132,6 +132,26 @@
  */
 - (void)showConferenceMembers:(NSDictionary *)data;
 
+/**
+ * Called when tap to HangupButton .
+ *
+ * The `data` dictionary.
+ */
+- (void)hangupConference:(NSDictionary *)data;
+
+/**
+ * Called when tap to Leave .
+ *
+ * The `data` dictionary.
+ */
+- (void)leaveConference:(NSDictionary *)data;
+
+/**
+ * Called when tap to Leave .
+ *
+ * The `data` dictionary.
+ */
+- (void)endConference:(NSDictionary *)data;
 
 /**
  * Called when tap to Cancel rejoin to Conference .

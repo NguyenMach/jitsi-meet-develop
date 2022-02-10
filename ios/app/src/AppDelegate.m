@@ -38,7 +38,7 @@
         [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
         builder.serverURL = [NSURL URLWithString:@"https://meet.jit.si"];
         builder.welcomePageEnabled = YES;
-
+      [builder setFeatureFlag:@"isCreator" withBoolean:TRUE];
         // Apple rejected our app because they claim requiring a
         // Dropbox account for recording is not acceptable.
 #if DEBUG

@@ -20,7 +20,9 @@ import {
     SET_PASSWORD,
     SET_PENDING_SUBJECT_CHANGE,
     SET_ROOM,
-    SET_START_MUTED_POLICY
+    SET_START_MUTED_POLICY,
+    HANGUP_CONFERENCE,
+    CANCEL_HANGUP_CONFERENCE
 } from './actionTypes';
 import { isRoomValid } from './functions';
 
@@ -76,6 +78,12 @@ ReducerRegistry.register(
 
         case SET_FOLLOW_ME:
             return set(state, 'followMeEnabled', action.enabled);
+
+        case HANGUP_CONFERENCE:
+            return set(state, 'isHangup', true);
+
+        case CANCEL_HANGUP_CONFERENCE:
+            return set(state, 'isHangup', false);
 
         case SET_LOCATION_URL:
             return set(state, 'room', undefined);

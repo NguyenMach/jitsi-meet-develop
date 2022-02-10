@@ -116,6 +116,18 @@
   [self _onJitsiMeetViewDelegateEvent:@"cancelRejoinedConference" withData:data];
 }
 
+- (void)hangupConference:(NSDictionary *)data {
+  [self _onJitsiMeetViewDelegateEvent:@"hangupConference" withData:data];
+}
+
+- (void)leaveConference:(NSDictionary *)data {
+  [self _onJitsiMeetViewDelegateEvent:@"leaveConference" withData:data];
+}
+
+- (void)endConference:(NSDictionary *)data {
+  [self _onJitsiMeetViewDelegateEvent:@"endConference" withData:data];
+}
+
 - (void)rejoinConferenceFailed:(NSDictionary *)data{
   [self _onJitsiMeetViewDelegateEvent:@"rejoinConferenceFailed" withData:data];
 

@@ -80,6 +80,7 @@
     "react-native-device-info": "8.0.0",
     "react-native-immersive": "2.0.0",
     "react-native-keep-awake": "4.0.0",
+    "react-native-modal": "^13.0.0",
     "react-native-paper": "4.8.1",
     "react-native-sound": "github:jitsi/react-native-sound#3fe5480fce935e888d5089d94a191c7c7e3aa190",
     "react-native-splash-screen": "3.2.0",

@@ -21,7 +21,9 @@ import {
     SHOW_CONFERENCE_INFORMATION,
     SHOW_CONFERENCE_MEMBERS,
     CANCEL_REJOINED_CONFERENCE,
-    REJOIN_CONFERENCE_FAILED
+    REJOIN_CONFERENCE_FAILED,
+    END_CONFERENCE,
+    LEAVE_CONFERENCE
 } from '../../base/conference';
 import { LOAD_CONFIG_ERROR } from '../../base/config';
 import {
@@ -209,6 +211,36 @@ MiddlewareRegistry.register(store => next => action => {
             sendEvent(
                 store,
                 SHOW_CONFERENCE_MEMBERS,
+                /* data */ {
+                    conference:roomName,
+                    url: url
+                });
+            break
+        }
+
+        case END_CONFERENCE: {
+            const roomName = getRoomName(store.getState());
+            const conference = getCurrentConference(store.getState());
+            let url = _normalizeUrl(conference[JITSI_CONFERENCE_URL_KEY]);
+    
+            sendEvent(
+                store,
+                END_CONFERENCE,
+                /* data */ {
+                    conference:roomName,
+                    url: url
+                });
+            break
+        }
+
+        case LEAVE_CONFERENCE: {
+            const roomName = getRoomName(store.getState());
+            const conference = getCurrentConference(store.getState());
+            let url = _normalizeUrl(conference[JITSI_CONFERENCE_URL_KEY]);
+    
+            sendEvent(
+                store,
+                LEAVE_CONFERENCE,
                 /* data */ {
                     conference:roomName,
                     url: url
