@@ -257,20 +257,10 @@ class Conference extends AbstractConference<Props, *> {
                     onClose = {this._onCloseEndMeetingDialog}
                     didSelectLeave = {this._onLeaveConference}
                     didSelectEnd = {this._onEndConference}
-                    onModalHide = {this._onModalHide}
-                    onRequestClose = {this._onRequestClose}
                     />
         )
     }
 
-    _onModalHide() {
-        console.log("_onModalHide");
-    }
-
-    _onRequestClose() {
-        console.log("onRequestClose");
-
-    }
 
     /**
      * Renders the conference notification badge if the feature is enabled.
