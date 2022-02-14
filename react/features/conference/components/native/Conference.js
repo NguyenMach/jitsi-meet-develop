@@ -256,8 +256,20 @@ class Conference extends AbstractConference<Props, *> {
                     visible = {_isHangup} 
                     onClose = {this._onCloseEndMeetingDialog}
                     didSelectLeave = {this._onLeaveConference}
-                    didSelectEnd = {this._onEndConference}/>
+                    didSelectEnd = {this._onEndConference}
+                    onModalHide = {this._onModalHide}
+                    onRequestClose = {this._onRequestClose}
+                    />
         )
+    }
+
+    _onModalHide() {
+        console.log("_onModalHide");
+    }
+
+    _onRequestClose() {
+        console.log("onRequestClose");
+
     }
 
     /**

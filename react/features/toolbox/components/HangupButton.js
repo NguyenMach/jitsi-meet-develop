@@ -45,28 +45,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
      */
     constructor(props: Props) {
         super(props);
-
-        this._hangup = _.once(() => {
-            sendAnalytics(createToolbarEvent('hangup'));
-
-            const { isCreator } = this.props
-
-            // FIXME: these should be unified.
-            if (navigator.product === 'ReactNative') {
-                if (isCreator) {
-                    this.props.dispatch(hangupConference({ data: 'hangup' }));
-                }else {
-                    this.props.dispatch(appNavigate(undefined));
-                }
-
-            } else {
-                if (isCreator) {
-                    this.props.dispatch(hangupConference({ data: 'hangup' }));
-                }else {
-                    this.props.dispatch(disconnect(true));
-                }
-            }
-        });
+        this.hangup = this.hangup.bind(this);
     }
 
     /**
@@ -77,8 +56,31 @@ class HangupButton extends AbstractHangupButton<Props, *> {
      * @returns {void}
      */
     _doHangup() {
-        this._hangup();
+        this.hangup()
     }
+
+     hangup() {
+        sendAnalytics(createToolbarEvent('hangup'));
+
+        const { isCreator } = this.props
+
+        // FIXME: these should be unified.
+        if (navigator.product === 'ReactNative') {
+            if (isCreator) {
+                this.props.dispatch(hangupConference({ data: 'hangup' }));
+            }else {
+                this.props.dispatch(appNavigate(undefined));
+            }
+
+        } else {
+            if (isCreator) {
+                this.props.dispatch(hangupConference({ data: 'hangup' }));
+            }else {
+                this.props.dispatch(disconnect(true));
+            }
+        }
+    }
+
 }
 
 /**
