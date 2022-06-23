@@ -2,22 +2,23 @@
 
 import { StyleSheet } from 'react-native';
 
-import { BoxModel, ColorPalette } from '../../base/styles';
+import { BoxModel } from '../../base/styles';
+import BaseTheme from '../../base/ui/components/BaseTheme.native';
 
-export const PLACEHOLDER_TEXT_COLOR = 'rgba(255, 255, 255, 0.5)';
+export const PLACEHOLDER_TEXT_COLOR = BaseTheme.palette.text01;
 
-export const SIDEBAR_AVATAR_SIZE = 100;
+export const DRAWER_AVATAR_SIZE = 104;
 
-const SIDEBAR_HEADER_HEIGHT = 150;
+const DRAWER_HEADER_HEIGHT = 220;
 
-export const SWITCH_THUMB_COLOR = ColorPalette.blueHighlight;
+export const SWITCH_THUMB_COLOR = BaseTheme.palette.action04;
 
-export const SWITCH_UNDER_COLOR = 'rgba(0, 0, 0, 0.4)';
+export const SWITCH_UNDER_COLOR = BaseTheme.palette.video01Disabled;
 
 /**
  * The default color of text on the WelcomePage.
  */
-const TEXT_COLOR = ColorPalette.white;
+const TEXT_COLOR = BaseTheme.palette.text01;
 
 /**
  * The styles of the React {@code Components} of the feature welcome including
@@ -25,19 +26,9 @@ const TEXT_COLOR = ColorPalette.white;
  */
 export default {
 
-    /**
-     * The audio-video switch itself.
-     */
-    audioVideoSwitch: {
-        marginHorizontal: 5
-    },
-
-    /**
-     * View that contains the audio-video switch and the labels.
-     */
-    audioVideoSwitchContainer: {
-        alignItems: 'center',
-        flexDirection: 'row'
+    blankPageText: {
+        color: TEXT_COLOR,
+        fontSize: 18
     },
 
     /**
@@ -46,6 +37,7 @@ export default {
     blankPageWrapper: {
         ...StyleSheet.absoluteFillObject,
         alignItems: 'center',
+        backgroundColor: BaseTheme.palette.uiBackground,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center'
@@ -55,8 +47,8 @@ export default {
      * Join button style.
      */
     button: {
-        backgroundColor: ColorPalette.blue,
-        borderColor: ColorPalette.blue,
+        backgroundColor: BaseTheme.palette.screen01Header,
+        borderColor: BaseTheme.palette.screen01Header,
         borderRadius: 4,
         borderWidth: 1,
         height: 30,
@@ -69,7 +61,7 @@ export default {
      */
     buttonText: {
         alignSelf: 'center',
-        color: ColorPalette.white,
+        color: BaseTheme.palette.text01,
         fontSize: 14
     },
 
@@ -77,7 +69,7 @@ export default {
      * The style of the display name label in the side bar.
      */
     displayName: {
-        color: ColorPalette.white,
+        color: BaseTheme.palette.text01,
         fontSize: 16,
         marginTop: BoxModel.margin,
         textAlign: 'center'
@@ -87,13 +79,6 @@ export default {
         color: TEXT_COLOR,
         fontSize: 18,
         marginBottom: BoxModel.margin
-    },
-
-    /**
-     * The welcome screen header style.
-     */
-    header: {
-        justifyContent: 'space-between'
     },
 
     /**
@@ -142,23 +127,13 @@ export default {
     },
 
     messageContainer: {
-        backgroundColor: ColorPalette.white,
-        borderColor: ColorPalette.white,
+        backgroundColor: BaseTheme.palette.ui12,
+        borderColor: BaseTheme.palette.field02,
         borderRadius: 4,
         borderWidth: 1,
         marginVertical: 5,
         paddingHorizontal: BoxModel.padding,
         paddingVertical: 2 * BoxModel.padding
-    },
-
-    /**
-     * The style of the top-level container/{@code View} of
-     * {@code LocalVideoTrackUnderlay}.
-     */
-    localVideoTrackUnderlay: {
-        alignSelf: 'stretch',
-        backgroundColor: 'transparent',
-        flex: 1
     },
 
     /**
@@ -174,7 +149,7 @@ export default {
      */
     reducedUIContainer: {
         alignItems: 'center',
-        backgroundColor: ColorPalette.blue,
+        backgroundColor: BaseTheme.palette.screen01Header,
         flex: 1,
         justifyContent: 'center'
     },
@@ -189,66 +164,25 @@ export default {
      */
     roomContainer: {
         alignSelf: 'stretch',
-        flexDirection: 'column'
-    },
-
-    /**
-     * Container of the side bar.
-     */
-    sideBar: {
-        width: 250
-    },
-
-    /**
-     * The body of the side bar where the items are.
-     */
-    sideBarBody: {
-        backgroundColor: ColorPalette.white,
-        flex: 1
+        flexDirection: 'column',
+        marginHorizontal: BaseTheme.spacing[2]
     },
 
     /**
      * The style of the side bar header.
      */
-    sideBarHeader: {
+    drawerHeader: {
         alignItems: 'center',
+        backgroundColor: BaseTheme.palette.screen01Header,
         flexDirection: 'column',
-        height: SIDEBAR_HEADER_HEIGHT,
-        justifyContent: 'center',
-        padding: BoxModel.padding
+        height: DRAWER_HEADER_HEIGHT,
+        justifyContent: 'center'
     },
 
-    /**
-     * Style of the menu items in the side bar.
-     */
-    sideBarItem: {
-        padding: 13
-    },
-
-    /**
-     * The View inside the side bar buttons (icon + text).
-     */
-    sideBarItemButtonContainer: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'flex-start'
-    },
-
-    /**
-     * The icon in the side bar item touchables.
-     */
-    sideBarItemIcon: {
-        color: ColorPalette.blueHighlight,
-        fontSize: 20,
-        marginRight: 15
-    },
-
-    /**
-     * The label of the side bar item touchables.
-     */
-    sideBarItemText: {
-        color: ColorPalette.black,
-        fontWeight: 'bold'
+    drawerNavigationIcon: {
+        height: BaseTheme.spacing[6],
+        marginLeft: BaseTheme.spacing[3],
+        width: BaseTheme.spacing[6]
     },
 
     /**
@@ -263,7 +197,7 @@ export default {
      */
     textInput: {
         backgroundColor: 'transparent',
-        borderColor: ColorPalette.white,
+        borderColor: BaseTheme.palette.field02,
         borderRadius: 4,
         borderWidth: 1,
         color: TEXT_COLOR,
@@ -290,13 +224,13 @@ export default {
     },
 
     insecureRoomNameWarningIcon: {
-        color: ColorPalette.warning,
+        color: BaseTheme.palette.warning03,
         fontSize: 24,
         marginRight: 10
     },
 
     insecureRoomNameWarningText: {
-        color: ColorPalette.warning,
+        color: BaseTheme.palette.warning03,
         flex: 1
     },
 
@@ -304,7 +238,28 @@ export default {
      * The style of the top-level container of {@code WelcomePage}.
      */
     welcomePage: {
-        backgroundColor: ColorPalette.blue,
+        backgroundColor: BaseTheme.palette.uiBackground,
+        flex: 1,
         overflow: 'hidden'
+    },
+
+    recentList: {
+        backgroundColor: BaseTheme.palette.uiBackground,
+        flex: 1,
+        overflow: 'hidden'
+    },
+
+    recentListDisabled: {
+        backgroundColor: BaseTheme.palette.uiBackground,
+        flex: 1,
+        opacity: 0.8,
+        overflow: 'hidden'
+    },
+
+    /**
+     * Style for screen container.
+     */
+    screenContainer: {
+        flex: 1
     }
 };

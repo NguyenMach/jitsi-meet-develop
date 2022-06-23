@@ -23,11 +23,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.jitsi.meet.sdk.log.JitsiMeetLogger;
+
+import java.util.HashMap;
 
 /**
  * This class implements an Android {@link Service}, a foreground one specifically, and it's
@@ -39,23 +42,39 @@ import org.jitsi.meet.sdk.log.JitsiMeetLogger;
 public class JitsiMeetOngoingConferenceService extends Service
     implements OngoingConferenceTracker.OngoingConferenceListener {
     private static final String TAG = JitsiMeetOngoingConferenceService.class.getSimpleName();
+    private static final String EXTRA_DATA_KEY = "extraDataKey";
+    private static final String EXTRA_DATA_BUNDLE_KEY = "extraDataBundleKey";
+    private static final String IS_AUDIO_MUTED_KEY = "isAudioMuted";
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver();
 
     private boolean isAudioMuted;
 
-    static void launch(Context context) {
+    static void launch(Context context, HashMap<String, Object> extraData) {
         OngoingNotification.createOngoingConferenceNotificationChannel();
 
         Intent intent = new Intent(context, JitsiMeetOngoingConferenceService.class);
         intent.setAction(Action.START.getName());
 
+        Bundle extraDataBundle = new Bundle();
+        extraDataBundle.putSerializable(EXTRA_DATA_KEY, extraData);
+        intent.putExtra(EXTRA_DATA_BUNDLE_KEY, extraDataBundle);
+
         ComponentName componentName;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            componentName = context.startForegroundService(intent);
-        } else {
-            componentName = context.startService(intent);
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                componentName = context.startForegroundService(intent);
+            } else {
+                componentName = context.startService(intent);
+            }
+        } catch (RuntimeException e) {
+            // Avoid crashing due to ForegroundServiceStartNotAllowedException (API level 31).
+            // See: https://developer.android.com/guide/components/foreground-services#background-start-restrictions
+            JitsiMeetLogger.w(TAG + " Ongoing conference service not started", e);
+            return;
         }
+
         if (componentName == null) {
             JitsiMeetLogger.w(TAG + " Ongoing conference service not started");
         }
@@ -92,6 +111,8 @@ public class JitsiMeetOngoingConferenceService extends Service
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        tryParseIsAudioMuted(intent);
+
         final String actionName = intent.getAction();
         final Action action = Action.fromName(actionName);
 
@@ -160,6 +181,14 @@ public class JitsiMeetOngoingConferenceService extends Service
 
         public String getName() {
             return name;
+        }
+    }
+
+    private void tryParseIsAudioMuted(Intent intent) {
+        try {
+            HashMap<String, Object> extraData = (HashMap<String, Object>) intent.getBundleExtra(EXTRA_DATA_BUNDLE_KEY).getSerializable(EXTRA_DATA_KEY);
+            isAudioMuted = Boolean.parseBoolean((String) extraData.get(IS_AUDIO_MUTED_KEY));
+        } catch (Exception ignored) {
         }
     }
 

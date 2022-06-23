@@ -93,7 +93,7 @@ public class BroadcastEvent {
         REJOIN_CONFERENCE_FAILED("org.jitsi.meet.REJOIN_CONFERENCE_FAILED"),
         END_CONFERENCE("org.jitsi.meet.END_CONFERENCE"),
         LEAVE_CONFERENCE("org.jitsi.meet.LEAVE_CONFERENCE");
-
+        READY_TO_CLOSE("org.jitsi.meet.READY_TO_CLOSE");
 
         private static final String CONFERENCE_WILL_JOIN_NAME = "CONFERENCE_WILL_JOIN";
         private static final String CONFERENCE_JOINED_NAME = "CONFERENCE_JOINED";
@@ -113,7 +113,7 @@ public class BroadcastEvent {
         private static final String REJOIN_CONFERENCE_FAILED_NAME = "REJOIN_CONFERENCE_FAILED";
         private static final String END_CONFERENCE_NAME = "END_CONFERENCE";
         private static final String LEAVE_CONFERENCE_NAME = "LEAVE_CONFERENCE";
-
+        private static final String READY_TO_CLOSE_NAME = "READY_TO_CLOSE";
 
         private final String action;
 
@@ -172,6 +172,8 @@ public class BroadcastEvent {
                     return END_CONFERENCE;
                 case LEAVE_CONFERENCE_NAME:
                     return LEAVE_CONFERENCE;
+                case READY_TO_CLOSE_NAME:
+                    return READY_TO_CLOSE;
             }
 
             return null;

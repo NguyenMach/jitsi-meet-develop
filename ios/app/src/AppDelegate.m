@@ -34,16 +34,16 @@
     jitsiMeet.universalLinkDomains = @[@"meet.jit.si", @"alpha.jitsi.net", @"beta.meet.jit.si"];
 
     jitsiMeet.defaultConferenceOptions = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {
+        [builder setFeatureFlag:@"welcomepage.enabled" withBoolean:YES];
         [builder setFeatureFlag:@"resolution" withValue:@(360)];
         [builder setFeatureFlag:@"ios.screensharing.enabled" withBoolean:YES];
-        builder.serverURL = [NSURL URLWithString:@"https://meet.jit.si"];
-        builder.welcomePageEnabled = YES;
-      [builder setFeatureFlag:@"isCreator" withBoolean:TRUE];
-        // Apple rejected our app because they claim requiring a
-        // Dropbox account for recording is not acceptable.
-#if DEBUG
         [builder setFeatureFlag:@"ios.recording.enabled" withBoolean:YES];
-#endif
+        [builder setFeatureFlag:@"prejoinpage.enabled" withBoolean:FALSE];
+        [builder setFeatureFlag:@"disablePolls" withBoolean:YES];
+
+      
+        builder.serverURL = [NSURL URLWithString:@"https://meet.jit.si"];
+        [builder setFeatureFlag:@"isCreator" withBoolean:YES];
     }];
 
   [jitsiMeet application:application didFinishLaunchingWithOptions:launchOptions];

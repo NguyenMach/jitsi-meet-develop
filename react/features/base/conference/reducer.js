@@ -10,6 +10,7 @@ import {
     CONFERENCE_FAILED,
     CONFERENCE_JOINED,
     CONFERENCE_LEFT,
+    CONFERENCE_LOCAL_SUBJECT_CHANGED,
     CONFERENCE_SUBJECT_CHANGED,
     CONFERENCE_TIMESTAMP_CHANGED,
     CONFERENCE_WILL_JOIN,
@@ -22,7 +23,8 @@ import {
     SET_ROOM,
     SET_START_MUTED_POLICY,
     HANGUP_CONFERENCE,
-    CANCEL_HANGUP_CONFERENCE
+    CANCEL_HANGUP_CONFERENCE,
+    SET_START_REACTIONS_MUTED
 } from './actionTypes';
 import { isRoomValid } from './functions';
 
@@ -57,6 +59,9 @@ ReducerRegistry.register(
         case CONFERENCE_SUBJECT_CHANGED:
             return set(state, 'subject', action.subject);
 
+        case CONFERENCE_LOCAL_SUBJECT_CHANGED:
+            return set(state, 'localSubject', action.localSubject);
+
         case CONFERENCE_TIMESTAMP_CHANGED:
             return set(state, 'conferenceTimestamp', action.conferenceTimestamp);
 
@@ -84,6 +89,9 @@ ReducerRegistry.register(
 
         case CANCEL_HANGUP_CONFERENCE:
             return set(state, 'isHangup', false);
+
+        case SET_START_REACTIONS_MUTED:
+            return set(state, 'startReactionsMuted', action.muted);
 
         case SET_LOCATION_URL:
             return set(state, 'room', undefined);
@@ -137,7 +145,7 @@ function _authStatusChanged(state, { authEnabled, authLogin }) {
  */
 function _conferenceFailed(state, { conference, error }) {
     // The current (similar to getCurrentConference in
-    // base/conference/functions.js) conference which is joining or joined:
+    // base/conference/functions.any.js) conference which is joining or joined:
     const conference_ = state.conference || state.joining;
 
     if (conference_ && conference_ !== conference) {

@@ -1,12 +1,15 @@
 // @flow
 
 import { ReducerRegistry } from '../base/redux';
+import { type Image } from '../virtual-background/constants';
 
 import {
     SET_DYNAMIC_BRANDING_DATA,
     SET_DYNAMIC_BRANDING_FAILED,
-    SET_DYNAMIC_BRANDING_READY
+    SET_DYNAMIC_BRANDING_READY,
+    UNSET_DYNAMIC_BRANDING
 } from './actionTypes';
+
 
 /**
  * The name of the redux store/state property which is the root of the redux
@@ -15,6 +18,15 @@ import {
 const STORE_NAME = 'features/dynamic-branding';
 
 const DEFAULT_STATE = {
+
+    /**
+     * The pool of avatar backgrounds.
+     *
+     * @public
+     * @type {Array<string>}
+     */
+    avatarBackgrounds: [],
+
     /**
      * The custom background color for the LargeVideo.
      *
@@ -75,6 +87,15 @@ const DEFAULT_STATE = {
     inviteDomain: '',
 
     /**
+     * An object containing the mapping between the language and url where the translation
+     * bundle is hosted.
+     *
+     * @public
+     * @type {Object}
+     */
+    labels: null,
+
+    /**
      * The custom url used when the user clicks the logo.
      *
      * @public
@@ -91,12 +112,36 @@ const DEFAULT_STATE = {
     logoImageUrl: '',
 
     /**
-     * Flag used to signal if the app should use a custom logo or not
+     * The generated MUI branded theme based on the custom theme json.
      *
      * @public
      * @type {boolean}
      */
-    useDynamicBrandingData: false
+    muiBrandedTheme: undefined,
+
+    /**
+     * The lobby/prejoin background.
+     *
+     * @public
+     * @type {string}
+     */
+    premeetingBackground: '',
+
+    /**
+     * Flag used to signal if the app should use a custom logo or not.
+     *
+     * @public
+     * @type {boolean}
+     */
+    useDynamicBrandingData: false,
+
+    /**
+     * An array of images to be used as virtual backgrounds instead of the default ones.
+     *
+     * @public
+     * @type {Array<Object>}
+     */
+    virtualBackgrounds: []
 };
 
 /**
@@ -106,26 +151,36 @@ ReducerRegistry.register(STORE_NAME, (state = DEFAULT_STATE, action) => {
     switch (action.type) {
     case SET_DYNAMIC_BRANDING_DATA: {
         const {
+            avatarBackgrounds,
             backgroundColor,
             backgroundImageUrl,
             defaultBranding,
             didPageUrl,
             inviteDomain,
+            labels,
             logoClickUrl,
-            logoImageUrl
+            logoImageUrl,
+            muiBrandedTheme,
+            premeetingBackground,
+            virtualBackgrounds
         } = action.value;
 
         return {
+            avatarBackgrounds,
             backgroundColor,
             backgroundImageUrl,
             defaultBranding,
             didPageUrl,
             inviteDomain,
+            labels,
             logoClickUrl,
             logoImageUrl,
+            muiBrandedTheme,
+            premeetingBackground,
             customizationFailed: false,
             customizationReady: true,
-            useDynamicBrandingData: true
+            useDynamicBrandingData: true,
+            virtualBackgrounds: formatImages(virtualBackgrounds || [])
         };
     }
     case SET_DYNAMIC_BRANDING_FAILED: {
@@ -141,7 +196,37 @@ ReducerRegistry.register(STORE_NAME, (state = DEFAULT_STATE, action) => {
             ...state,
             customizationReady: true
         };
+
+    case UNSET_DYNAMIC_BRANDING:
+        return DEFAULT_STATE;
     }
 
     return state;
 });
+
+/**
+ * Transforms the branding images into an array of Images objects ready
+ * to be used as virtual backgrounds.
+ *
+ * @param {Array<string>} images -
+ * @private
+ * @returns {{Props}}
+ */
+function formatImages(images: Array<string> | Array<Object>): Array<Image> {
+    return images.map((img, i) => {
+        let src;
+        let tooltip;
+
+        if (typeof img === 'object') {
+            ({ src, tooltip } = img);
+        } else {
+            src = img;
+        }
+
+        return {
+            id: `branding-${i}`,
+            src,
+            tooltip
+        };
+    });
+}

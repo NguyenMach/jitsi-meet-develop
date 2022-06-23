@@ -1,5 +1,6 @@
 // @flow
 
+import BaseTheme from '../../../base/ui/components/BaseTheme.native';
 import { ColorPalette } from '../../../base/styles';
 
 export default {
@@ -7,6 +8,11 @@ export default {
         alignSelf: 'center',
         borderRadius: 4,
         paddingVertical: 4
+    },
+
+    displayNamePadding: {
+        padding: BaseTheme.spacing[1],
+        paddingRight: 6
     },
 
     displayNameText: {

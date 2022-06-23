@@ -2,6 +2,7 @@
 
 import { ColorSchemeRegistry, schemeColor } from '../../../base/color-scheme';
 import { BoxModel, ColorPalette } from '../../../base/styles';
+import BaseTheme from '../../../base/ui/components/BaseTheme.native';
 
 const BUBBLE_RADIUS = 8;
 
@@ -56,7 +57,8 @@ export default {
         borderTopWidth: 1,
         flexDirection: 'row',
         paddingHorizontal: BoxModel.padding,
-        marginTop:20
+        marginTop:20,
+        paddingBottom: '4%',
     },
 
     inputField: {
@@ -125,7 +127,42 @@ export default {
     timeText: {
         color: 'rgb(164, 184, 209)',
         fontSize: 13
-    }
+    },
+
+    chatContainer: {
+        backgroundColor: BaseTheme.palette.ui01,
+        flex: 1
+    },
+
+    tabContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+
+    tabLeftButton: {
+        flex: 1,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomLeftRadius: 0
+    },
+
+    tabRightButton: {
+        flex: 1,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0
+    },
+
+    gifContainer: {
+        maxHeight: 150
+    },
+
+    gifImage: {
+        resizeMode: 'contain',
+        width: 250,
+        height: undefined,
+        flexGrow: 1
+    },
 };
 
 ColorSchemeRegistry.register('Chat', {

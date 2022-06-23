@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import { TouchableOpacity, View, Text, Image } from 'react-native';
-import Collapsible from 'react-native-collapsible';
 import { translate } from '../../../base/i18n';
 
 import { ColorSchemeRegistry } from '../../../base/color-scheme';
@@ -12,25 +11,17 @@ import { connect } from '../../../base/redux';
 import { StyleType } from '../../../base/styles';
 import { SharedDocumentButton } from '../../../etherpad';
 import { InviteButton } from '../../../invite';
-import { AudioRouteButton } from '../../../mobile/audio-mode';
 import { LiveStreamButton, RecordButton } from '../../../recording';
-import SecurityDialogButton from '../../../security/components/security-dialog/SecurityDialogButton';
 import { SharedVideoButton } from '../../../shared-video/components';
 import { ClosedCaptionButton } from '../../../subtitles';
 import { TileViewButton } from '../../../video-layout';
-import { getMovableButtons } from '../../functions.native';
 import HelpButton from '../HelpButton';
-import MuteEveryoneButton from '../MuteEveryoneButton';
-import MuteEveryonesVideoButton from '../MuteEveryonesVideoButton';
-
 import AudioOnlyButton from './AudioOnlyButton';
-import MoreOptionsButton from './MoreOptionsButton';
-import RaiseHandButton from './RaiseHandButton';
 import ScreenSharingButton from './ScreenSharingButton.js';
-import ToggleCameraButton from './ToggleCameraButton';
 import styles from './styles';
 import ConferenceInforButton from './ConferenceInforButton';
 import ConferenceMemberButton from './ConferenceMemberButton';
+import AudioDeviceToggleButton  from '../../../mobile/audio-mode/components/AudioDeviceToggleButton';
 
 const cancelIcon = require('../../../../../images/ic_Close.png');
 
@@ -122,19 +113,11 @@ class OverflowMenu extends PureComponent<Props, State> {
      */
     render() {
         const { _bottomSheetStyles, _width } = this.props;
-        const { showMore } = this.state;
-        const toolbarButtons = getMovableButtons(_width);
-
+        
         const buttonProps = {
             afterClick: this._onCancel,
             showLabel: true,
             styles: _bottomSheetStyles.buttons
-        };
-
-        const moreOptionsButtonProps = {
-            ...buttonProps,
-            afterClick: this._onToggleMenu,
-            visible: !showMore
         };
 
         return (
@@ -145,8 +128,8 @@ class OverflowMenu extends PureComponent<Props, State> {
                 <ConferenceInforButton {...buttonProps} />
                 <ConferenceMemberButton {...buttonProps}/>
                 <TileViewButton {...buttonProps} />
-                <MuteEveryoneButton {...buttonProps} />
-                <AudioRouteButton {...buttonProps} />
+                <ScreenSharingButton {...buttonProps} />
+                <AudioDeviceToggleButton {...buttonProps} />
                 {/* {!toolbarButtons.has('invite') && <InviteButton {...buttonProps} />} */}
             </BottomSheet>
         );
@@ -221,7 +204,6 @@ class OverflowMenu extends PureComponent<Props, State> {
         console.log("_onCancel");
         if (this.props._isOpen) {
             this.props.dispatch(hideDialog(OverflowMenu_));
-
             return true;
         }
 

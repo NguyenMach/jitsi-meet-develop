@@ -3,29 +3,18 @@
 import type { Dispatch } from 'redux';
 
 import { MEDIA_TYPE } from '../base/media';
-import { getParticipants } from '../base/participants';
-import { selectEndpoints, shouldDisplayTileView } from '../video-layout';
+import {
+    getDominantSpeakerParticipant,
+    getLocalParticipant,
+    getPinnedParticipant,
+    getRemoteParticipants
+} from '../base/participants';
+import { isStageFilmstripAvailable } from '../filmstrip/functions';
 
 import {
     SELECT_LARGE_VIDEO_PARTICIPANT,
     UPDATE_KNOWN_LARGE_VIDEO_RESOLUTION
 } from './actionTypes';
-
-/**
- * Signals conference to select a participant.
- *
- * @returns {Function}
- */
-export function selectParticipant() {
-    return (dispatch: Dispatch<any>, getState: Function) => {
-        const state = getState();
-        const ids = shouldDisplayTileView(state)
-            ? getParticipants(state).map(participant => participant.id)
-            : [ state['features/large-video'].participantId ];
-
-        dispatch(selectEndpoints(ids));
-    };
-}
 
 /**
  * Action to select the participant to be displayed in LargeVideo based on the
@@ -40,6 +29,16 @@ export function selectParticipant() {
 export function selectParticipantInLargeVideo(participant: ?string) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
+
+        if (isStageFilmstripAvailable(state, 2)) {
+            return;
+        }
+
+        // Keep Etherpad open.
+        if (state['features/etherpad'].editing) {
+            return;
+        }
+
         const participantId = participant ?? _electParticipantInLargeVideo(state);
         const largeVideo = state['features/large-video'];
         const remoteScreenShares = state['features/video-layout'].remoteScreenShares;
@@ -60,8 +59,6 @@ export function selectParticipantInLargeVideo(participant: ?string) {
                 type: SELECT_LARGE_VIDEO_PARTICIPANT,
                 participantId
             });
-
-            dispatch(selectParticipant());
         }
     };
 }
@@ -110,29 +107,45 @@ function _electLastVisibleRemoteVideo(tracks) {
  * @returns {(string|undefined)}
  */
 function _electParticipantInLargeVideo(state) {
-    // 1. If a participant is pinned, they will be shown in the LargeVideo
-    // (regardless of whether they are local or remote).
-    const participants = state['features/base/participants'];
-    let participant = participants.find(p => p.pinned);
+    const stageFilmstrip = isStageFilmstripAvailable(state);
+    let participant;
 
-    if (participant) {
-        return participant.id;
+    if (!stageFilmstrip) {
+        // If a participant is pinned, they will be shown in the LargeVideo (regardless of whether they are local or
+        // remote) when the filmstrip on stage is disabled.
+        participant = getPinnedParticipant(state);
+
+        if (participant) {
+            return participant.id;
+        }
     }
 
-    // 2. Next, pick the most recent remote screenshare that was added to the conference.
+    // Pick the most recent remote screenshare that was added to the conference.
     const remoteScreenShares = state['features/video-layout'].remoteScreenShares;
 
     if (remoteScreenShares?.length) {
         return remoteScreenShares[remoteScreenShares.length - 1];
     }
 
-    // 3. Next, pick the dominant speaker (other than self).
-    participant = participants.find(p => p.dominantSpeaker && !p.local);
-    if (participant) {
+    // Next, pick the pinned participant when filmstrip on stage is enabled.
+    if (stageFilmstrip) {
+        participant = getPinnedParticipant(state);
+
+        if (participant) {
+            return participant.id;
+        }
+    }
+
+    // Next, pick the dominant speaker (other than self).
+    participant = getDominantSpeakerParticipant(state);
+    if (participant && !participant.local) {
         return participant.id;
     }
 
-    // 4. Next, pick the most recent participant with video.
+    // In case this is the local participant.
+    participant = undefined;
+
+    // Next, pick the most recent participant with video.
     const tracks = state['features/base/tracks'];
     const videoTrack = _electLastVisibleRemoteVideo(tracks);
 
@@ -140,8 +153,9 @@ function _electParticipantInLargeVideo(state) {
         return videoTrack.participantId;
     }
 
-    // 5. As a last resort, select the participant that joined last (other than poltergist or other bot type
-    // participants).
+    // Last, select the participant that joined last (other than poltergist or other bot type participants).
+    const participants = [ ...getRemoteParticipants(state).values() ];
+
     for (let i = participants.length; i > 0 && !participant; i--) {
         const p = participants[i - 1];
 
@@ -151,5 +165,5 @@ function _electParticipantInLargeVideo(state) {
         return participant.id;
     }
 
-    return participants.find(p => p.local)?.id;
+    return getLocalParticipant(state)?.id;
 }

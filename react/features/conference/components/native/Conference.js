@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { NativeModules, SafeAreaView, StatusBar, View } from 'react-native';
+import { BackHandler, NativeModules, SafeAreaView, StatusBar, View } from 'react-native';
 
 import { appNavigate } from '../../../app/actions';
 import { PIP_ENABLED, FULLSCREEN_ENABLED, getFeatureFlag } from '../../../base/flags';
@@ -108,6 +108,12 @@ type Props = AbstractProps & {
  * The conference page of the mobile (i.e. React Native) application.
  */
 class Conference extends AbstractConference<Props, *> {
+
+    /**
+     * Timeout ref.
+     */
+    _expandedLabelTimeout: Object;
+
     /**
      * Initializes a new Conference instance.
      *
@@ -117,6 +123,12 @@ class Conference extends AbstractConference<Props, *> {
     constructor(props) {
         super(props);
 
+        this.state = {
+            visibleExpandedLabel: undefined
+        };
+
+        this._expandedLabelTimeout = React.createRef();
+
         // Bind event handlers so they are only bound once per instance.
         this._onClick = this._onClick.bind(this);
         this._onHardwareBackPress = this._onHardwareBackPress.bind(this);
@@ -125,6 +137,7 @@ class Conference extends AbstractConference<Props, *> {
         this._onCloseEndMeetingDialog = this._onCloseEndMeetingDialog.bind(this);
         this._onLeaveConference = this._onLeaveConference.bind(this);
         this._onEndConference = this._onEndConference.bind(this);
+        this._createOnPress = this._createOnPress.bind(this);
     }
 
     /**
@@ -135,7 +148,7 @@ class Conference extends AbstractConference<Props, *> {
      * @returns {void}
      */
     componentDidMount() {
-        BackButtonRegistry.addListener(this._onHardwareBackPress);
+        BackHandler.addEventListener('hardwareBackPress', this._onHardwareBackPress);
     }
 
     /**
@@ -147,8 +160,9 @@ class Conference extends AbstractConference<Props, *> {
      * @returns {void}
      */
     componentWillUnmount() {
-        // Tear handling any hardware button presses for back navigation down.
-        BackButtonRegistry.removeListener(this._onHardwareBackPress);
+       // Tear handling any hardware button presses for back navigation down.
+       BackHandler.removeEventListener('hardwareBackPress', this._onHardwareBackPress);
+       clearTimeout(this._expandedLabelTimeout.current);
     }
 
     /**
@@ -228,6 +242,38 @@ class Conference extends AbstractConference<Props, *> {
         });
 
         return true;
+    }
+
+    _createOnPress: (string) => void;
+
+    /**
+     * Creates a function to be invoked when the onPress of the touchables are
+     * triggered.
+     *
+     * @param {string} label - The identifier of the label that's onLayout is
+     * triggered.
+     * @returns {Function}
+     */
+    _createOnPress(label) {
+        return () => {
+            const { visibleExpandedLabel } = this.state;
+
+            const newVisibleExpandedLabel
+                = visibleExpandedLabel === label ? undefined : label;
+
+            clearTimeout(this._expandedLabelTimeout.current);
+            this.setState({
+                visibleExpandedLabel: newVisibleExpandedLabel
+            });
+
+            if (newVisibleExpandedLabel) {
+                this._expandedLabelTimeout.current = setTimeout(() => {
+                    this.setState({
+                        visibleExpandedLabel: undefined
+                    });
+                }, EXPANDED_LABEL_TIMEOUT);
+            }
+        };
     }
 
     /**
@@ -350,7 +396,6 @@ class Conference extends AbstractConference<Props, *> {
 
                 { this._renderConferenceNotification() }
 
-                { this._renderConferenceModals() }
                 {_shouldDisplayTileView && <Toolbox />}
 
                 {this._renderHangupPopup()}
