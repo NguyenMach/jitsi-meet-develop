@@ -145,8 +145,8 @@ class OverflowMenu extends PureComponent<Props, State> {
                 <ConferenceInforButton {...buttonProps} />
                 <ConferenceMemberButton {...buttonProps}/>
                 <TileViewButton {...buttonProps} />
-                <MuteEveryoneButton {...buttonProps} />
                 <ScreenSharingButton {...buttonProps} />
+                <MuteEveryoneButton {...buttonProps} />
                 <AudioRouteButton {...buttonProps} />
                 {/* {!toolbarButtons.has('invite') && <InviteButton {...buttonProps} />} */}
             </BottomSheet>
