@@ -6,6 +6,7 @@ import { translate } from '../../../base/i18n';
 
 import { ColorSchemeRegistry } from '../../../base/color-scheme';
 import { BottomSheet, hideDialog, isDialogOpen } from '../../../base/dialog';
+import { bottomSheetStyles } from '../../../base/dialog/components/native/styles';
 import { IconDragHandle } from '../../../base/icons';
 import { connect } from '../../../base/redux';
 import { StyleType } from '../../../base/styles';
@@ -30,11 +31,6 @@ const cancelIcon = require('../../../../../images/ic_Close.png');
  * The type of the React {@code Component} props of {@link OverflowMenu}.
  */
 type Props = {
-
-    /**
-     * The color-schemed stylesheet of the dialog feature.
-     */
-    _bottomSheetStyles: StyleType,
 
     /**
      * True if the overflow menu is currently visible, false otherwise.
@@ -101,7 +97,6 @@ class OverflowMenu extends PureComponent<Props, State> {
         this._onCancel = this._onCancel.bind(this);
         this._onSwipe = this._onSwipe.bind(this);
         this._onToggleMenu = this._onToggleMenu.bind(this);
-        this._renderMenuExpandToggle = this._renderMenuExpandToggle.bind(this);
         this._renderHeaderBottomSheet = this._renderHeaderBottomSheet.bind(this);
     }
 
@@ -117,7 +112,7 @@ class OverflowMenu extends PureComponent<Props, State> {
         const buttonProps = {
             afterClick: this._onCancel,
             showLabel: true,
-            styles: _bottomSheetStyles.buttons
+            styles: bottomSheetStyles.buttons
         };
 
         return (
@@ -163,31 +158,6 @@ class OverflowMenu extends PureComponent<Props, State> {
 
                 </View>
 
-            </View>
-        );
-    }
-
-
-
-    _renderMenuExpandToggle: () => React$Element<any>;
-
-    /**
-     * Function to render the menu toggle in the bottom sheet header area.
-     *
-     * @returns {React$Element}
-     */
-    _renderMenuExpandToggle() {
-        return (
-            <View
-                style={[
-                    this.props._bottomSheetStyles.sheet,
-                    styles.expandMenuContainer
-                ]}>
-                <TouchableOpacity onPress={this._onToggleMenu}>
-                    { /* $FlowFixMe */}
-                    <IconDragHandle
-                        fill={this.props._bottomSheetStyles.buttons.iconStyle.color} />
-                </TouchableOpacity>
             </View>
         );
     }

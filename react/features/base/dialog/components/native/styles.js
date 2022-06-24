@@ -20,6 +20,33 @@ export const MD_FONT_SIZE = 16;
 export const MD_ITEM_HEIGHT = 48;
 export const MD_ITEM_MARGIN_PADDING = 16;
 
+/**
+ * Reusable (colored) style for text in any branded dialogs.
+ */
+ const brandedDialogText = {
+    color: schemeColor('text'),
+    fontSize: MD_FONT_SIZE,
+    textAlign: 'center'
+};
+
+const brandedDialogLabelStyle = {
+    color: schemeColor('text'),
+    flexShrink: 1,
+    fontSize: MD_FONT_SIZE,
+    opacity: 0.90
+};
+
+const brandedDialogItemContainerStyle = {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: MD_ITEM_HEIGHT
+};
+
+const brandedDialogIconStyle = {
+    color: schemeColor('icon'),
+    fontSize: 24
+};
+
 
 /**
  * The React {@code Component} styles of {@code BottomSheet}. These have
@@ -39,7 +66,7 @@ export const bottomSheetStyles = {
     /**
      * Style for the container of the sheet.
      */
-     sheetContainer: {
+    sheetContainer: {
         alignItems: 'stretch',
         flex: 1,
         flexDirection: 'column',
@@ -60,7 +87,8 @@ export const bottomSheetStyles = {
          * Style for the {@code Icon} element in a generic item of the menu.
          */
         iconStyle: {
-            ...brandedDialogIconStyle
+            ...brandedDialogIconStyle,
+            color:'white',
         },
 
         /**
@@ -68,7 +96,8 @@ export const bottomSheetStyles = {
          */
         labelStyle: {
             ...brandedDialogLabelStyle,
-            marginLeft: 16
+            marginLeft: 10,
+            color:'white'
         },
 
         /**
@@ -76,7 +105,11 @@ export const bottomSheetStyles = {
          */
         style: {
             ...brandedDialogItemContainerStyle,
-            paddingHorizontal: MD_ITEM_MARGIN_PADDING
+            paddingHorizontal: MD_ITEM_MARGIN_PADDING,
+            backgroundColor:'rgb(34,35,35)',
+            borderRadius:12,
+            height:56,
+            marginTop:12
         },
 
         /**
@@ -89,7 +122,7 @@ export const bottomSheetStyles = {
      * Bottom sheet's base style.
      */
     sheet: {
-        backgroundColor: BaseTheme.palette.ui02,
+        backgroundColor: '#0F1114',
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16
     },
@@ -98,14 +131,14 @@ export const bottomSheetStyles = {
      * Bottom sheet's base style with header.
      */
     sheetHeader: {
-        backgroundColor: BaseTheme.palette.ui02
+        backgroundColor: '#0F1114',
     },
 
     /**
      * Bottom sheet's background color with footer.
      */
     sheetFooter: {
-        backgroundColor: BaseTheme.palette.bottomSheet
+        backgroundColor: '#0F1114',
     }
 };
 
@@ -154,33 +187,6 @@ export const brandedDialog = {
     }
 };
 
-/**
- * Reusable (colored) style for text in any branded dialogs.
- */
-const brandedDialogText = {
-    color: schemeColor('text'),
-    fontSize: MD_FONT_SIZE,
-    textAlign: 'center'
-};
-
-const brandedDialogLabelStyle = {
-    color: schemeColor('text'),
-    flexShrink: 1,
-    fontSize: MD_FONT_SIZE,
-    opacity: 0.90
-};
-
-const brandedDialogItemContainerStyle = {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: MD_ITEM_HEIGHT
-};
-
-const brandedDialogIconStyle = {
-    color: schemeColor('icon'),
-    fontSize: 24
-};
-
 export const inputDialog = {
     bottomField: {
         marginBottom: 0
@@ -197,6 +203,7 @@ export const inputDialog = {
         margin: BoxModel.margin
     }
 };
+
 
 /**
  * Default styles for the items of a {@code BottomSheet}-based menu.
