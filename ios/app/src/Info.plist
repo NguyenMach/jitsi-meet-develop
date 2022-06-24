@@ -83,9 +83,9 @@
 		<string>org.jitsi.JitsiMeet.ios.conference</string>
 	</array>
 	<key>RTCAppGroupIdentifier</key>
-	<string>group.org.jitsi.meet.appgroup</string>
+	<string>group.com.gti.signetmeet</string>
 	<key>RTCScreenSharingExtension</key>
-	<string>org.jitsi.meet.broadcast.extension</string>
+	<string>com.gti.jitsi.meet.demo.broadcast.extension</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
