@@ -670,6 +670,7 @@
         "openChat": "Mở Chat",
         "participants": "Những người tham dự",
         "pip": "Vào chế độ Ảnh-trong-Ảnh",
+        "privateMessage": "Gửi tin nhắn riêng",
         "profile": "Chỉnh sửa hồ sơ cá nhân",
         "raiseHand": "Giơ / Hạ tay",
         "raiseYourHand": "Giơ tay",
@@ -742,16 +743,23 @@
         "standardDefinition": "Phân giải SD"
     },
     "videothumbnail": {
+        "connectionInfo": "Thông tin kết nối",
         "domute": "Tắt tiếng",
+        "domuteOthers": "Tắt tiếng tất cả ngoại trừ",
+        "domuteVideo": "Tắt camera",
+        "domuteVideoOfOthers": "Tắt camera tất cả ngoại trừ",
         "flip": "Lật",
         "kick": "Mời ra",
         "grantModerator": "Cấp quyền quản trị",
+        "hideSelfView": "Ẩn hình của tôi",
         "moderator": "Quản trị viên",
         "mute": "Người tham gia bị tắt tiếng",
         "muted": "Đã tắt tiếng",
         "remoteControl": "Điều khiển từ xa",
-        "show": "",
-        "videomute": ""
+        "show": "Hiển thị màn hình chính",
+        "videomute": "",
+        "videoMuted": "Camera đã tắt"
+
     },
     "virtualBackground": {
         "addBackground": "Thêm hình nền",

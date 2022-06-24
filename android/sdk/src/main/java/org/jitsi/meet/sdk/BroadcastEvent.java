@@ -92,7 +92,7 @@ public class BroadcastEvent {
         CANCEL_REJOINED_CONFERENCE("org.jitsi.meet.CANCEL_REJOINED_CONFERENCE"),
         REJOIN_CONFERENCE_FAILED("org.jitsi.meet.REJOIN_CONFERENCE_FAILED"),
         END_CONFERENCE("org.jitsi.meet.END_CONFERENCE"),
-        LEAVE_CONFERENCE("org.jitsi.meet.LEAVE_CONFERENCE");
+        LEAVE_CONFERENCE("org.jitsi.meet.LEAVE_CONFERENCE"),
         READY_TO_CLOSE("org.jitsi.meet.READY_TO_CLOSE");
 
         private static final String CONFERENCE_WILL_JOIN_NAME = "CONFERENCE_WILL_JOIN";

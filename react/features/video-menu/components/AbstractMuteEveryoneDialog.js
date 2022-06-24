@@ -63,7 +63,6 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
 
         // Bind event handlers so they are only bound once per instance.
         this._onSubmit = this._onSubmit.bind(this);
-        this._onToggleModeration = this._onToggleModeration.bind(this);
     }
 
     /**
@@ -90,7 +89,6 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
 
     _onSubmit: () => boolean;
 
-    _onToggleModeration: () => void;
 
     /**
      * Callback to be invoked when the value of this dialog is submitted.
