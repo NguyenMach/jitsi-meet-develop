@@ -59,10 +59,8 @@ class PinButton extends AbstractButton<Props, *> {
  * @returns {Props}
  */
 function _mapStateToProps(state) {
-    const { isOpen } = state['features/participants-pane'];
-
     return {
-        visible: !isOpen && shouldDisplayTileView(state)
+        visible: shouldDisplayTileView(state)
     };
 }
 

@@ -194,7 +194,7 @@
         "kickMessage": "",
         "kickParticipantButton": "Đẩy ra",
         "kickParticipantDialog": "Bạn có chắc muốn đẩy người này ra?",
-        "kickParticipantTitle": "Tắt tiếng của người tham dự này?",
+        "kickParticipantTitle": "Đẩy người tham dự này?",
         "kickTitle": "{{participantDisplayName}} đã đẩy bạn ra khỏi cuộc họp.",
         "sessionExpired": "Phiên làm việc hết hạn, xin vui lòng tham gia lại.",
         "liveStreaming": "Phát trực tuyến",

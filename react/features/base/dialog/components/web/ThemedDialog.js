@@ -1,5 +1,3 @@
-// @flow
-
 import {
     Dialog,
     FillScreen,
@@ -12,11 +10,7 @@ import { N0, DN50 } from '@atlaskit/theme/colors';
 import { themed } from '@atlaskit/theme/components';
 import React from 'react';
 
-type Props = {
-    isChromeless: boolean
-}
-
-const ThemedDialog = (props: Props) => {
+const ThemedDialog = props => {
     const style = { backgroundColor: props.isChromeless ? 'transparent' : themed({ light: N0,
         dark: DN50 })({ theme: { mode: 'dark' } }) };
 

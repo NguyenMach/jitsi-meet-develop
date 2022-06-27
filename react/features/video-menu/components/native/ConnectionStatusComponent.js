@@ -2,19 +2,16 @@
 
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { withTheme } from 'react-native-paper';
-
 
 import { Avatar } from '../../../base/avatar';
-import { getSourceNameSignalingFeatureFlag } from '../../../base/config';
+import { ColorSchemeRegistry } from '../../../base/color-scheme';
 import { BottomSheet, isDialogOpen, hideDialog } from '../../../base/dialog';
-import { bottomSheetStyles } from '../../../base/dialog/components/native/styles';
 import { translate } from '../../../base/i18n';
 import { IconArrowDownLarge, IconArrowUpLarge } from '../../../base/icons';
 import { getParticipantDisplayName } from '../../../base/participants';
 import { BaseIndicator } from '../../../base/react';
 import { connect } from '../../../base/redux';
-import { getSourceNameByParticipantId } from '../../../base/tracks';
+import { StyleType, ColorPalette } from '../../../base/styles';
 import statsEmitter from '../../../connection-indicator/statsEmitter';
 
 import styles from './styles';
@@ -43,6 +40,11 @@ export type Props = {
     participantID: string,
 
     /**
+     * The color-schemed stylesheet of the BottomSheet.
+     */
+    _bottomSheetStyles: StyleType,
+
+    /**
      * True if the menu is currently open, false otherwise.
      */
     _isOpen: boolean,
@@ -55,22 +57,7 @@ export type Props = {
     /**
      * The function to be used to translate i18n labels.
      */
-    t: Function,
-
-    /**
-     * Theme used for styles.
-     */
-    theme: Object,
-
-    /**
-     * The source name of the track.
-     */
-     _sourceName: string,
-
-    /**
-     * Whether source name signaling is enabled.
-     */
-    _sourceNameSignalingEnabled: boolean
+    t: Function
 }
 
 /**
@@ -129,8 +116,7 @@ class ConnectionStatusComponent extends Component<Props, State> {
      * @returns {React$Node}
      */
     render(): React$Node {
-        const { t, theme } = this.props;
-        const { palette } = theme;
+        const { t } = this.props;
 
         return (
             <BottomSheet
@@ -152,7 +138,7 @@ class ConnectionStatusComponent extends Component<Props, State> {
                         <BaseIndicator
                             icon = { IconArrowDownLarge }
                             iconStyle = {{
-                                color: palette.icon03
+                                color: ColorPalette.darkGrey
                             }} />
                         <Text style = { styles.statsInfoText }>
                             { this.state.downloadString }
@@ -160,7 +146,7 @@ class ConnectionStatusComponent extends Component<Props, State> {
                         <BaseIndicator
                             icon = { IconArrowUpLarge }
                             iconStyle = {{
-                                color: palette.icon03
+                                color: ColorPalette.darkGrey
                             }} />
                         <Text style = { styles.statsInfoText }>
                             { `${this.state.uploadString} Kbps` }
@@ -173,7 +159,7 @@ class ConnectionStatusComponent extends Component<Props, State> {
                         <BaseIndicator
                             icon = { IconArrowDownLarge }
                             iconStyle = {{
-                                color: palette.icon03
+                                color: ColorPalette.darkGrey
                             }} />
                         <Text style = { styles.statsInfoText }>
                             { this.state.packetLostDownloadString }
@@ -181,7 +167,7 @@ class ConnectionStatusComponent extends Component<Props, State> {
                         <BaseIndicator
                             icon = { IconArrowUpLarge }
                             iconStyle = {{
-                                color: palette.icon03
+                                color: ColorPalette.darkGrey
                             }} />
                         <Text style = { styles.statsInfoText }>
                             { this.state.packetLostUploadString }
@@ -217,11 +203,6 @@ class ConnectionStatusComponent extends Component<Props, State> {
     componentDidMount() {
         statsEmitter.subscribeToClientStats(
             this.props.participantID, this._onStatsUpdated);
-
-        if (this.props._sourceNameSignalingEnabled) {
-            statsEmitter.subscribeToClientStats(
-                this.props._sourceName, this._onStatsUpdated);
-        }
     }
 
     /**
@@ -236,15 +217,6 @@ class ConnectionStatusComponent extends Component<Props, State> {
                 prevProps.participantID, this._onStatsUpdated);
             statsEmitter.subscribeToClientStats(
                 this.props.participantID, this._onStatsUpdated);
-        }
-
-        if (this.props._sourceNameSignalingEnabled) {
-            if (prevProps._sourceName !== this.props._sourceName) {
-                statsEmitter.unsubscribeToClientStats(
-                    prevProps._sourceName, this._onStatsUpdated);
-                statsEmitter.subscribeToClientStats(
-                    this.props._sourceName, this._onStatsUpdated);
-            }
         }
     }
 
@@ -300,24 +272,18 @@ class ConnectionStatusComponent extends Component<Props, State> {
      */
     _extractResolutionString(stats) {
         const { framerate, resolution } = stats;
-        let frameRateString, resolutionString;
 
-        if (this.props._sourceNameSignalingEnabled) {
-            resolutionString = resolution ? `${resolution.width}x${resolution.height}` : null;
-            frameRateString = framerate || null;
-        } else {
-            resolutionString = Object.keys(resolution || {})
-                .map(ssrc => {
-                    const { width, height } = resolution[ssrc];
+        const resolutionString = Object.keys(resolution || {})
+        .map(ssrc => {
+            const { width, height } = resolution[ssrc];
 
-                    return `${width}x${height}`;
-                })
-                .join(', ') || null;
+            return `${width}x${height}`;
+        })
+        .join(', ') || null;
 
-            frameRateString = Object.keys(framerate || {})
-                .map(ssrc => framerate[ssrc])
-                .join(', ') || null;
-        }
+        const frameRateString = Object.keys(framerate || {})
+            .map(ssrc => framerate[ssrc])
+            .join(', ') || null;
 
         return resolutionString && frameRateString ? `${resolutionString}@${frameRateString}fps` : undefined;
     }
@@ -367,20 +333,13 @@ class ConnectionStatusComponent extends Component<Props, State> {
 
         let codecString;
 
-        if (this.props._sourceNameSignalingEnabled) {
-            if (codec) {
-                codecString = `${codec.audio}, ${codec.video}`;
-            }
-        } else {
-            // Only report one codec, in case there are multiple for a user.
-            Object.keys(codec || {})
-                .forEach(ssrc => {
-                    const { audio, video } = codec[ssrc];
+        // Only report one codec, in case there are multiple for a user.
+        Object.keys(codec || {})
+            .forEach(ssrc => {
+                const { audio, video } = codec[ssrc];
 
-                    codecString = `${audio}, ${video}`;
-                });
-        }
-
+                codecString = `${audio}, ${video}`;
+            });
 
         return codecString;
     }
@@ -414,11 +373,6 @@ class ConnectionStatusComponent extends Component<Props, State> {
         statsEmitter.unsubscribeToClientStats(
             this.props.participantID, this._onStatsUpdated);
 
-        if (this.props._sourceNameSignalingEnabled) {
-            statsEmitter.unsubscribeToClientStats(
-                this.props._sourceName, this._onStatsUpdated);
-        }
-
         if (this.props._isOpen) {
             this.props.dispatch(hideDialog(ConnectionStatusComponent_));
 
@@ -436,12 +390,12 @@ class ConnectionStatusComponent extends Component<Props, State> {
      * @returns {React$Element}
      */
     _renderMenuHeader() {
-        const { participantID } = this.props;
+        const { _bottomSheetStyles, participantID } = this.props;
 
         return (
             <View
                 style = { [
-                    bottomSheetStyles.sheet,
+                    _bottomSheetStyles.sheet,
                     styles.participantNameContainer ] }>
                 <Avatar
                     participantId = { participantID }
@@ -466,13 +420,12 @@ function _mapStateToProps(state, ownProps) {
     const { participantID } = ownProps;
 
     return {
+        _bottomSheetStyles: ColorSchemeRegistry.get(state, 'BottomSheet'),
         _isOpen: isDialogOpen(state, ConnectionStatusComponent_),
-        _participantDisplayName: getParticipantDisplayName(state, participantID),
-        _sourceNameSignalingEnabled: getSourceNameSignalingFeatureFlag(state),
-        _sourceName: getSourceNameByParticipantId(state, ownProps.participantId)
+        _participantDisplayName: getParticipantDisplayName(state, participantID)
     };
 }
 
-ConnectionStatusComponent_ = translate(connect(_mapStateToProps)(withTheme(ConnectionStatusComponent)));
+ConnectionStatusComponent_ = translate(connect(_mapStateToProps)(ConnectionStatusComponent));
 
 export default ConnectionStatusComponent_;

@@ -95,14 +95,12 @@ class PageReloadOverlay extends AbstractPageReloadOverlay<Props> {
         return (
             <OverlayFrame>
                 <ConfirmDialog
-                    cancelKey = 'dialog.Cancel'
-                    okKey = 'dialog.rejoinNow'
+                    cancelLabel = 'dialog.Cancel'
+                    confirmLabel = 'dialog.rejoinNow'
+                    descriptionKey = { `${t(message, { seconds: timeLeft })}` }
                     onCancel = { this._onCancel }
-                    onSubmit = { this._onReloadNow }>
-                    <Text style = { [_dialogStyles.text,{color:'white'} ]}>
-                        { `${t(title)} ${t(message, { seconds: timeLeft })}` }
-                    </Text>
-                </ConfirmDialog>
+                    onSubmit = { this._onReloadNow }
+                    title = { title } />
             </OverlayFrame>
         );
     }

@@ -1,15 +1,14 @@
 // @flow
 
 import React from 'react';
-import { View } from 'react-native';
-import Dialog from 'react-native-dialog';
+import { Text } from 'react-native';
 
 import { translate } from '../../../i18n';
 import { connect } from '../../../redux';
 import { _abstractMapStateToProps } from '../../functions';
-import AbstractDialog, { type Props as AbstractProps } from '../AbstractDialog';
-import { renderHTML } from '../functions.native';
 
+import { type Props as AbstractProps } from './BaseDialog';
+import BaseSubmitDialog from './BaseSubmitDialog';
 
 type Props = AbstractProps & {
 
@@ -21,29 +20,23 @@ type Props = AbstractProps & {
      * {@code translate(string, Object)} for more details.
      */
     contentKey: string | { key: string, params: Object},
-
-    /**
-     * Translation function.
-     */
-    t: Function
 };
 
 /**
- * Implements an alert dialog, to simply show an error or a message,
- * then disappear on dismiss.
+ * Implements an alert dialog, to simply show an error or a message, then disappear on dismiss.
  */
-class AlertDialog extends AbstractDialog<Props> {
+class AlertDialog extends BaseSubmitDialog<Props, *> {
     /**
-     * Implements React's {@link Component#render}.
+     * Implements {@code BaseSubmitDialog._renderSubmittable}.
      *
      * @inheritdoc
      */
-    render() {
-        const { contentKey, t } = this.props;
+    _renderSubmittable() {
+        const { _dialogStyles, contentKey, t } = this.props;
         const content
             = typeof contentKey === 'string'
                 ? t(contentKey)
-                : renderHTML(t(contentKey.key, contentKey.params));
+                : this._renderHTML(t(contentKey.key, contentKey.params));
 
         return (
             <Text style = { [_dialogStyles.text, {color:'white'}] }>
@@ -52,7 +45,7 @@ class AlertDialog extends AbstractDialog<Props> {
         );
     }
 
-    _onSubmit: () => boolean;
+    _renderHTML: string => Object | string
 }
 
 export default translate(connect(_abstractMapStateToProps)(AlertDialog));

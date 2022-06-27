@@ -184,7 +184,16 @@ export const brandedDialog = {
 
     overlayTouchable: {
         ...StyleSheet.absoluteFillObject
-    }
+    },
+
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        alignItems: 'center',
+        backgroundColor: 'rgba(127, 127, 127, 0.6)',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 30
+    },
 };
 
 export const inputDialog = {
@@ -323,12 +332,11 @@ ColorSchemeRegistry.register('Dialog', {
     },
 
     text: {
-        ...brandedDialogText,
-        color: BaseTheme.palette.text01
+        ...brandedDialogText
     },
 
     topBorderContainer: {
-        borderTopColor: BaseTheme.palette.dividerColor,
+        borderTopColor: schemeColor('border'),
         borderTopWidth: 1
     }
 });
